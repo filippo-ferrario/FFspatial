@@ -62,5 +62,5 @@ Harrell, F. E. 2015. Regression Modeling Strategies. Springer International Publ
 \link{boot.sample}, \link[MASS:glmmPQL]{MASS::glmmPQL}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link[spatstat:mppm]{spatstat::mppm}
 }
 \author{
-Filippo Ferrario, \email{filippo.f3rrario.1@gmail.com}
+Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
 }

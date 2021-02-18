@@ -24,5 +24,5 @@ See \code{?predict.lme} : Level values increase from outermost to innermost grou
 \link[nlme:predict.lme]{nlme::predict.lme}
 }
 \author{
-Filippo Ferrario, \email{filippo.f3rrario.1@gmail.com}
+Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
 }

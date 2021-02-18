@@ -29,5 +29,5 @@ Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M
 \link{spt_glmmPQL_bts_val}
 }
 \author{
-Filippo Ferrario, \email{filippo.f3rrario.1@gmail.com}
+Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
 }

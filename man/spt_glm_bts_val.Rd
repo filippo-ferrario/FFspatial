@@ -34,5 +34,5 @@ Bootstrap sampling is performed internally.
 The R^2^ is calculated using \link[uMIn:r.squaredGLMM]{uMIn::r.squaredGLMM}
 }
 \author{
-Filippo Ferrario, \email{filippo.f3rrario.1@gmail.com}
+Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
 }

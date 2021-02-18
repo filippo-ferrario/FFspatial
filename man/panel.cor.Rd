@@ -13,5 +13,5 @@ function to be produce panels in pair plots to investigate correlations
 Modified from Zurr 2009 book.
 }
 \author{
-Filippo Ferrario, \email{filippo.f3rrario.1@gmail.com}
+Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
 }
