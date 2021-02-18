@@ -60,19 +60,19 @@
 focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE, addZeros=TRUE,...){
 		
 		# check arguments
-		if (is.null(to_focal) | !is.solist(to_focal)) stop('"to_focal" must be a solist')
-		if (!is.null(W_from) & !is.solist(W_from)) stop('"W_from" must be a solist or NULL')
-		if (!is.null(full_list) & !is.solist(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
+		if (is.null(to_focal) | !spatstat::is.solist(to_focal)) stop('"to_focal" must be a solist')
+		if (!is.null(W_from) & !spatstat::is.solist(W_from)) stop('"W_from" must be a solist or NULL')
+		if (!is.null(full_list) & !spatstat::is.solist(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
 		if (!is.logical(changeW)) stop('"changeW" must be logical')
 		if (!is.logical(addZeros)) stop('"addZeros" must be logical')
 		if ((changeW | addZeros ) & is.null(W_from) ) stop('Need "W_from" to change window or add zeros' )
 		
 		# coherce full_list to character
-		if (is.solist(full_list)) full_list<-names(full_list)	
+		if (spatstat::is.solist(full_list)) full_list<-names(full_list)	
 		
 		# check names
 		# If W_from is specified 
-		if (is.solist(W_from)){	
+		if (spatstat::is.solist(W_from)){	
 				if (sum(full_list %in% names(W_from))<length(full_list) ) stop('Bad correspondence between names of "full_list" and "W_from"')
 		        if (sum(names(to_focal) %in% full_list)<length(names(to_focal))) warning('Some names of to_focal are not in full_list')
 			}
@@ -109,14 +109,14 @@ focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE
 						res<-spstFocal(X=x[[1]], W_from=Y[[1]]  ,... )  # , dist=0.5, side.cell=0.1, pad=T, padValue=NA, fun=mean,na.rm=T
 				}
 				if  (sum(names(to_focal) == K) ==0){
-					res<-as.im(Window(Y[[1]]), value=0)		
+					res<-spatstat::as.im(spatstat::Window(Y[[1]]), value=0)		
 				}
 				res		
 
 			})
 
 		names(qq)<-full_list
-		qq<-as.solist(qq)
+		qq<-spatstat::as.solist(qq)
 		qq
 }
 

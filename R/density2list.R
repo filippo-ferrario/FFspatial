@@ -51,19 +51,19 @@
 
 density2list<-function (to_density=NULL,  W_from=NULL, full_list=W_from, changeW=FALSE, addZeros=TRUE, ...){
  		# check arguments
-		if (is.null(to_density) | !is.solist(to_density)) stop('"to_density" must be a solist')
-		if (!is.null(W_from) & !is.solist(W_from)) stop('"W_from" must be a solist or NULL')
-		if (!is.null(full_list) & !is.solist(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
+		if (is.null(to_density) | !spatstat::is.solist(to_density)) stop('"to_density" must be a solist')
+		if (!is.null(W_from) & !spatstat::is.solist(W_from)) stop('"W_from" must be a solist or NULL')
+		if (!is.null(full_list) & !spatstat::is.solist(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
 		if (!is.logical(changeW)) stop('"changeW" must be logical')
 		if (!is.logical(addZeros)) stop('"addZeros" must be logical')
 		if ((changeW | addZeros ) & is.null(W_from) ) stop('Need "W_from" to change window or add zeros' )
 		
 		# coherce full_list to character
-		if (is.solist(full_list)) full_list<-names(full_list)	
+		if (spatstat::is.solist(full_list)) full_list<-names(full_list)	
 		
 		# check names
 		# If W_from is specified 
-		if (is.solist(W_from)){	
+		if (spatstat::is.solist(W_from)){	
 				if (sum(full_list %in% names(W_from))<length(full_list) ) stop('Bad correspondence between names of "full_list" and "W_from"')
 		        if (sum(names(to_density) %in% full_list)<length(names(to_density))) warning('Some names of to_density are not in full_list')
 			}
@@ -100,21 +100,21 @@ density2list<-function (to_density=NULL,  W_from=NULL, full_list=W_from, changeW
 				if (sum(names(to_density) == K) ==1){
 						x<-to_density[K]
 						# If changeW if TRUE then change W of ppp before density because otherwise density.ppp ignore W
-						if (changeW) {Window(x[[1]])<-as.owin(Y[[1]])}
+						if (changeW) {spatstat::Window(x[[1]])<-spatstat::as.owin(Y[[1]])}
 						# res<-densityfun(X=x[[1]], W=Y[[1]],... )  #... eps, sigma, diggle, edge
-						res<-density.ppp(x=x[[1]], ... )  #... eps, sigma, diggle, edge
+						res<-spatstat::density.ppp(x=x[[1]], ... )  #... eps, sigma, diggle, edge
 				}
 				if  (sum(names(to_density) == K) ==0){
-					temp_ppp<-ppp(x=NULL,y=NULL,window=as.owin(Y[[1]]))
+					temp_ppp<-spatstat::ppp(x=NULL,y=NULL,window=spatstat::as.owin(Y[[1]]))
 					# res<-densityfun(X=temp_ppp, W=temp_ppp,... )  #... eps, sigma, diggle, edge
-					res<-density.ppp(x=temp_ppp, ... )  #... eps, sigma, diggle, edge	
+					res<-spatstat::density.ppp(x=temp_ppp, ... )  #... eps, sigma, diggle, edge	
 				}
 				res		
 
 			})
 
 		names(qq)<-full_list
-		qq<-as.solist(qq)
+		qq<-spatstat::as.solist(qq)
 		qq
 }
 
