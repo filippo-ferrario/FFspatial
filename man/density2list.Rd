@@ -55,7 +55,7 @@ If "full_list" is specified, all its elements (either characters or names of a s
 
 }
 \seealso{
-
+\link{density.ppp}, \link{densityfun}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

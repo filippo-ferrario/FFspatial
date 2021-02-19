@@ -24,10 +24,9 @@ an \code{im} object
 This function to apply the raster::focal funtion to spatstat objects
 }
 \details{
-\subsection{If X is an owin object, the "W_from" argument is used to assign the Window of observation which otherwise will be lacking.
+If X is an owin object, the "W_from" argument is used to assign the Window of observation which otherwise will be lacking.
 In this case the window should likely be assigned from a ppp under analysis.
-#'
-\emph{\strong{workflow}}}{
+\subsection{\emph{\strong{workflow}}}{
 
 If X is an \code{owin} object:
 \enumerate{
@@ -37,7 +36,7 @@ As such, the vaule assigned to each pixel is the percent of the pixel coverd by 
 if "W_from" has an irregual shape the values outside "W_from" are given a value 0.
 \item assign the spatial domain of the "W_from" to exclude the pixels outside "W_from".
 This is achieved passing the pixellate output to as.im(,W=W_from) which set the pixels outside "W_from" as NA.
-\item convert image to a rasterLayer to be able to use raster::focal
+\item convert image to a rasterLayer to be able to use \link[raster:focal]{raster::focal}
 }
 
 If X is an \code{ppp} object:
@@ -55,7 +54,7 @@ Common steps:
 
 }
 \seealso{
-\link[spatstat:pixellate.owin]{spatstat::pixellate.owin}, \link[spatstat:pixellate.ppp]{spatstat::pixellate.ppp}, \link[raster:focal]{raster::focal}
+\link{pixellate.owin}, \link{pixellate.ppp}, \link{focal}, \link{focal2list}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

@@ -54,7 +54,7 @@ If "full_list" is specified, all its elements (either characters or names of a s
 
 }
 \seealso{
-\link{spstFocal}, \link[spatstat:pixellate]{spatstat::pixellate}
+\link{spstFocal}, \link{pixellate}, \link{pixellate.owin}, \link{pixellate.ppp}, \link{focal}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

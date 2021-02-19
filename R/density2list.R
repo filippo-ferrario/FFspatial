@@ -42,7 +42,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' 
+#' [density.ppp], [densityfun]
 #' 
 #' @return
 #' an object of class 

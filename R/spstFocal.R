@@ -21,7 +21,7 @@
 #' 
 #' If X is an owin object, the "W_from" argument is used to assign the Window of observation which otherwise will be lacking. 
 #' In this case the window should likely be assigned from a ppp under analysis.
-#' #' 
+#' 
 #' ***workflow***
 #' ----------------
 #'  
@@ -32,7 +32,7 @@
 #' 	  if "W_from" has an irregual shape the values outside "W_from" are given a value 0.
 #' 2) assign the spatial domain of the "W_from" to exclude the pixels outside "W_from".
 #' 	  This is achieved passing the pixellate output to as.im(,W=W_from) which set the pixels outside "W_from" as NA.
-#' 3) convert image to a rasterLayer to be able to use raster::focal
+#' 3) convert image to a rasterLayer to be able to use [raster::focal]
 #' 
 #' If X is an `ppp` object:
 #' the density map is calculated using pixellate.ppp and transformed in a raster to be able to use the function focal.
@@ -52,7 +52,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' [spatstat::pixellate.owin], [spatstat::pixellate.ppp], [raster::focal]
+#' [pixellate.owin], [pixellate.ppp], [focal], [focal2list]
 #' 
 #' @return
 #' an `im` object

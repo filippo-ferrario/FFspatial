@@ -49,7 +49,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' [spstFocal], [spatstat::pixellate]
+#' [spstFocal], [pixellate], [pixellate.owin], [pixellate.ppp], [focal]
 #' 
 #' @return
 #' an object of class "imlist"  "solist"  "anylist" "listof"  "list" 
