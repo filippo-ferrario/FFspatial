@@ -27,8 +27,8 @@
 #' @param n_pts number of points per category per quadrats
 #' @param seed seed for random generation if needed.
 #' @param quadrat_size size of the replicare quadrat in meters.
-#' @param class_lab not used 
-#' @param class_val not used.
+#' @param class_lab Character giving the name of the column storing the classification of polygons 
+#' @param class_val Character giving the classification levels for which sampling should be performed
 #' 
 #' @details 
 #' Attention about the behaviour of the function if the shp shapefile is referring to multiple sites. In this case it is better to provide the parameter "site_poly" 
