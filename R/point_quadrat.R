@@ -39,7 +39,16 @@ point_quadrat<-function(dsn=NULL,file_tag=NULL,shp=NULL, site_poly=NULL, n_quad=
     # require(sf)
     require(tidyverse)
     # require(sfheadres)
-    # set seed if needed
+
+    # make all classes lower case to ensure consistency
+    class_lab<-tolower(class_lab)
+    class_val<-tolower(class_val)
+    names(shp)<-tolower(names(shp))
+    shp_df<-as.data.frame(shp)
+    cl_vec<-tolower(shp_df[,names(shp_df)==class_lab])
+    shp[,names(shp)==class_lab]<-cl_vec
+
+
 	# make 1 unique polygon of from the shp
 	if(!is.null(site_poly)) {site<-site_poly 
             } else {site<-sf::st_union(shp) %>% sfheaders::sf_remove_holes(.)}
@@ -53,42 +62,39 @@ point_quadrat<-function(dsn=NULL,file_tag=NULL,shp=NULL, site_poly=NULL, n_quad=
     grd<-sf::st_as_sf(grd)
     site<-sf::st_as_sf(site)
     int<- sf::st_intersection(grd,site) %>%
-           mutate(area=as.numeric(sf::st_area(.)) ) %>%
-           filter(area==quadrat_size^2) %>%
+           mutate(quad_area=as.numeric(sf::st_area(.)) ) %>%
+           filter(quad_area==quadrat_size^2) %>%
            mutate(repl=1:nrow(.))
     
+    # set seed if needed
     if(is.numeric(seed)) set.seed(seed)
     IDs<-sample(1:nrow(int), size=n_quad, replace=F )
     quad_samp<- int[IDs,]
-    # { this part for selecting classes to consider. need development
-    # class_col<-which(names(shp)==class_lab)
-        # ID_poly<- as.data.frame(shp) %>% 
-        #             .[,class_col] %in% class_val
-    
-        # int_quad<- sf::st_intersection(shp[ID_poly,],quad_samp) %>% 
-    # }
     int_quad<- sf::st_intersection(shp,quad_samp) %>% 
                 sf::st_cast(., 'MULTIPOLYGON') %>%
+                mutate(poly_area=as.numeric(sf::st_area(.)))%>%
                 filter(.data[[class_lab]] %in% class_val )
 
-    #set.seed(988)
     pt_shp<-NULL
     for (i in 1:length(class_val)){            
         pt_temp<-lapply(1:n_quad, function(x){
                                     ww<-int_quad %>% #[ int_quad$repl== IDs[x],] %>%
-                                    filter(.data[[class_lab]]==class_val[i], int_quad$repl== IDs[x] ) %>%
-                                    sf::st_sample(sf::st_geometry(.), size=n_pts, by_polygon=F) %>%  
-                                    sf::st_as_sf(.)   
-                        }) %>% bind_rows(.)
+                                        filter(.data[[class_lab]]==class_val[i], int_quad$repl== IDs[x] )
+                                    if (nrow(ww)>0) {
+                                                 sf::st_sample(sf::st_geometry(ww), size=n_pts, by_polygon=F) %>%  
+                                                 sf::st_as_sf(.) }  
+                                    }
+                        ) %>% 
+                 bind_rows(.)
         pt_shp<-rbind(pt_shp,pt_temp)
 
 
     }
 
 
-    sf::st_write(quad_samp, dsn=paste0(dsn,'/',file_tag,'-pq-rep_quadrats.shp'))
-    sf::st_write(pt_shp, dsn=paste0(dsn,'/',file_tag,'-pq-points_quadrats.shp'))
-    sf::st_write(int_quad, dsn=paste0(dsn,'/',file_tag,'-pq-poly_quadrats.shp'))
+    sf::st_write(quad_samp, dsn=paste0(dsn,'/',file_tag,'-pq-rep_quadrats.shp'), append=FALSE) # append=FALSE cause overwriting
+    sf::st_write(pt_shp, dsn=paste0(dsn,'/',file_tag,'-pq-points_quadrats.shp'), append=FALSE) # append=FALSE cause overwriting
+    sf::st_write(int_quad, dsn=paste0(dsn,'/',file_tag,'-pq-poly_quadrats.shp'), append=FALSE) # append=FALSE cause overwriting
 
 
 }
