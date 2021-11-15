@@ -21,7 +21,7 @@
 #' 
 #' @param to_focal a list of spatstat objects (e.g., owin or ppp) to which apply the focal function. 
 #' @param W_from  optional if to_focal is a list of ppp. A list of windows (objects of class "owin") or data acceptable to [spatstat::as.owin], where to look for the Window of observation to assign to to_focal elements.
-#' @param full_list optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using [spstFocal]. To be specified if "full_list" is a subset of W_from to avoid superfluous calculations.
+#' @param full_list optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using [spstFocal]. To be specified if "full_list" is a subset of "W_from" to avoid superfluous calculations. If not specified but "W_from" is, then "full_list" is set to be "W_from".
 #' @param changeW logical. If TRUE (the default) and "W_from" is specified, the Window of the elements from "W_from" is used and will replace that of elements in "to_focal" (this in case X is a ppp). If FALSE the window of "to_focal" elements is kept.
 #' @param addZeros logical. If TRUE (the default) and "W_from" is specified, the output will include elements with all pixels having value 0 when an element is in "W_from" but not in "to_focal"
 #' @param ... agruments to be passed to [spstFocal] and [raster::focal] (In particular `fun`, `na.rm`, `pad` and `padValue`).
@@ -77,7 +77,7 @@ focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE
 		        if (sum(names(to_focal) %in% full_list)<length(names(to_focal))) warning('Some names of to_focal are not in full_list')
 			}
 		
-		# if W_from is not specified then it means function needs to be applied to all elements of to_focal without changing Window of observation
+		# if W_from is not specified then it means focal function needs to be applied to all elements of to_focal without changing Window of observation
 		if (is.null(W_from)) {
 			W_from<-to_focal
 			if (is.null(full_list)) {
