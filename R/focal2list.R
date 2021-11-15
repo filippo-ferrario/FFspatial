@@ -14,7 +14,7 @@
 #' This function is to be used to create a variable (usually a predictor)  using [spstFocal] for each replicate plot to be analyzed.
 #' The intended use cases:
 #' - a set of ppp is to be used as response variable
-#' - for each ppp, the analyst wants to produce a response variable using a focal statistic based on another set of spatial objects (e.g., owin, ppp) describing a given feature. 
+#' - for each ppp, the analyst wants to produce avariable using a focal statistic based on another set of spatial objects (e.g., owin, ppp) describing a given feature. 
 #' 	 However it is possible that that feature is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available. 
 #' 	 In this case the function produce an image whose pixels have all 0 value.
 #' 
@@ -68,11 +68,11 @@ focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE
 		if ((changeW | addZeros ) & is.null(W_from) ) stop('Need "W_from" to change window or add zeros' )
 		
 		# coherce full_list to character
-		if (spatstat::is.solist(full_list)) full_list<-names(full_list)	
+		if ('solist' %in% class(full_list)) full_list<-names(full_list)	
 		
 		# check names
 		# If W_from is specified 
-		if (spatstat::is.solist(W_from)){	
+		if ('solist' %in% class(W_from)){	
 				if (sum(full_list %in% names(W_from))<length(full_list) ) stop('Bad correspondence between names of "full_list" and "W_from"')
 		        if (sum(names(to_focal) %in% full_list)<length(names(to_focal))) warning('Some names of to_focal are not in full_list')
 			}
@@ -109,14 +109,14 @@ focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE
 						res<-spstFocal(X=x[[1]], W_from=Y[[1]]  ,... )  # , dist=0.5, side.cell=0.1, pad=T, padValue=NA, fun=mean,na.rm=T
 				}
 				if  (sum(names(to_focal) == K) ==0){
-					res<-spatstat::as.im(spatstat::Window(Y[[1]]), value=0)		
+					res<-spatstat.geom::as.im(spatstat.geom::Window(Y[[1]]), value=0)		
 				}
 				res		
 
 			})
 
 		names(qq)<-full_list
-		qq<-spatstat::as.solist(qq)
+		qq<-spatstat.geom::as.solist(qq)
 		qq
 }
 
