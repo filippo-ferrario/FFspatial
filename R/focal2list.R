@@ -20,8 +20,8 @@
 #' 
 #' 
 #' @param to_focal a list of spatstat objects (e.g., owin or ppp) to which apply the focal function. 
-#' @param W_from  optional if to_focal is a list of ppp. A list windows (objects of class "owin") or data acceptable to [spatstat::as.owin], where to look for the Window of observation to assign to to_focal elements.
-#' @param full_list optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using [spstFocal]. To be specified if "full_list" is a subset of W_from to avoid superflouos calculations.
+#' @param W_from  optional if to_focal is a list of ppp. A list of windows (objects of class "owin") or data acceptable to [spatstat::as.owin], where to look for the Window of observation to assign to to_focal elements.
+#' @param full_list optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using [spstFocal]. To be specified if "full_list" is a subset of W_from to avoid superfluous calculations.
 #' @param changeW logical. If TRUE (the default) and "W_from" is specified, the Window of the elements from "W_from" is used and will replace that of elements in "to_focal" (this in case X is a ppp). If FALSE the window of "to_focal" elements is kept.
 #' @param addZeros logical. If TRUE (the default) and "W_from" is specified, the output will include elements with all pixels having value 0 when an element is in "W_from" but not in "to_focal"
 #' @param ... agruments to be passed to [spstFocal] and [raster::focal] (In particular `fun`, `na.rm`, `pad` and `padValue`).
@@ -49,7 +49,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' [spstFocal], [pixellate], [pixellate.owin], [pixellate.ppp], [focal]
+#' [spstFocal], [spatstat.geom::pixellate], [spatstat.geom::pixellate.owin], [spatstat.geom::pixellate.ppp], [focal]
 #' 
 #' @return
 #' an object of class "imlist"  "solist"  "anylist" "listof"  "list" 
