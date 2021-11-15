@@ -9,11 +9,11 @@
 
 
 
-#' Apply spstFocal to the elements of the list "to_focal" with potential indtroduction of real zeros.
+#' Apply spstFocal to the elements of the list "to_focal" with potential introduction of real zeros.
 #' 
 #' This function is to be used to create a variable (usually a predictor)  using [spstFocal] for each replicate plot to be analyzed.
-#' The intended use case:
-#' - a set of ppp is to be used as response varable
+#' The intended use cases:
+#' - a set of ppp is to be used as response variable
 #' - for each ppp, the analyst wants to produce a response variable using a focal statistic based on another set of spatial objects (e.g., owin, ppp) describing a given feature. 
 #' 	 However it is possible that that feature is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available. 
 #' 	 In this case the function produce an image whose pixels have all 0 value.
