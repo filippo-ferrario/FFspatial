@@ -10,10 +10,10 @@
 
 #' Apply density.ppp to element of a list of ppp
 #' 
-#' This function is to be used to create a variable (usually a predictor) using [spatstat::density.ppp] for each replicate plot to be analyzed.
+#' This function is to be used to create a variable (usually a predictor) using [spatstat.core::density.ppp] for each replicate plot to be analyzed.
 #' The intended use case:
 #' - a set of ppp is to be used as response varable
-#' - for each ppp, the analyst wants to produce a response variable using [spatstat::density.ppp] based on another set of spatial point patterns. 
+#' - for each ppp, the analyst wants to produce a response variable using [spatstat.core::density.ppp] based on another set of spatial point patterns. 
 #' 	 However it is possible that the predictor ppp is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available. 
 #' 	 In this case the function produce an image whose pixels have all 0 value
 #' 
@@ -22,7 +22,7 @@
 #' @param full_list optional. A character vector or A list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using [spstFocal]. To be specified if "full_list" is a subset of W_from to avoid superflouos calculations.
 #' @param changeW logical (default =FALSE). If TRUE  and "W_from" is specified, the Window of the elements from "W_from" is used and will replace that of elements in "to_density" (this in case X is a ppp). If FALSE the window of "to_density" elements is kept.
 #' @param addZeros logical. If TRUE (the default) and "W_from" is specified, the output will include elements with all pixels having value 0 when an element is in "W_from" but not in "to_density"
-#' @param ... to pass extra arguments to [spatstat::density.ppp]
+#' @param ... to pass extra arguments to [spatstat.core::density.ppp]
 #' 
 #' @details
 #' List "to_density" may be a subset of or longer list than "full_list" or "W_from". 
@@ -42,7 +42,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' [density.ppp], [densityfun]
+#' [spatstat.core::density.ppp], [spatstat.core::densityfun]
 #' 
 #' @return
 #' an object of class 
@@ -51,19 +51,19 @@
 
 density2list<-function (to_density=NULL,  W_from=NULL, full_list=W_from, changeW=FALSE, addZeros=TRUE, ...){
  		# check arguments
-		if (is.null(to_density) | !spatstat::is.solist(to_density)) stop('"to_density" must be a solist')
-		if (!is.null(W_from) & !spatstat::is.solist(W_from)) stop('"W_from" must be a solist or NULL')
-		if (!is.null(full_list) & !spatstat::is.solist(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
+		if (is.null(to_density) | !'solist' %in% class(to_density)) stop('"to_density" must be a solist')
+		if (!is.null(W_from) & !'solist' %in% class(W_from)) stop('"W_from" must be a solist or NULL')
+		if (!is.null(full_list) & !'solist' %in% class(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
 		if (!is.logical(changeW)) stop('"changeW" must be logical')
 		if (!is.logical(addZeros)) stop('"addZeros" must be logical')
 		if ((changeW | addZeros ) & is.null(W_from) ) stop('Need "W_from" to change window or add zeros' )
 		
 		# coherce full_list to character
-		if (spatstat::is.solist(full_list)) full_list<-names(full_list)	
+		if ('solist' %in% class(full_list)) full_list<-names(full_list)	
 		
 		# check names
 		# If W_from is specified 
-		if (spatstat::is.solist(W_from)){	
+		if ('solist' %in% class(W_from)){	
 				if (sum(full_list %in% names(W_from))<length(full_list) ) stop('Bad correspondence between names of "full_list" and "W_from"')
 		        if (sum(names(to_density) %in% full_list)<length(names(to_density))) warning('Some names of to_density are not in full_list')
 			}
@@ -100,14 +100,14 @@ density2list<-function (to_density=NULL,  W_from=NULL, full_list=W_from, changeW
 				if (sum(names(to_density) == K) ==1){
 						x<-to_density[K]
 						# If changeW if TRUE then change W of ppp before density because otherwise density.ppp ignore W
-						if (changeW) {spatstat::Window(x[[1]])<-spatstat::as.owin(Y[[1]])}
+						if (changeW) {spatstat.geom::Window(x[[1]])<-spatstat::as.owin(Y[[1]])}
 						# res<-densityfun(X=x[[1]], W=Y[[1]],... )  #... eps, sigma, diggle, edge
-						res<-spatstat::density.ppp(x=x[[1]], ... )  #... eps, sigma, diggle, edge
+						res<-spatstat.core::density.ppp(x=x[[1]], ... )  #... eps, sigma, diggle, edge
 				}
 				if  (sum(names(to_density) == K) ==0){
 					temp_ppp<-spatstat::ppp(x=NULL,y=NULL,window=spatstat::as.owin(Y[[1]]))
 					# res<-densityfun(X=temp_ppp, W=temp_ppp,... )  #... eps, sigma, diggle, edge
-					res<-spatstat::density.ppp(x=temp_ppp, ... )  #... eps, sigma, diggle, edge	
+					res<-spatstat.core::density.ppp(x=temp_ppp, ... )  #... eps, sigma, diggle, edge	
 				}
 				res		
 

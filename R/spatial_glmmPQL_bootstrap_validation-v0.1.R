@@ -8,7 +8,7 @@
 #           and calculate the RMSE optimism at each run.
 #           Extracted info are stored in a dataframe.
 #           
-#           glmmPQL is set to mimic the fitting done for MIXED models by spatstat::mppm           
+#           glmmPQL is set to mimic the fitting done for MIXED models by spatstat.geom::mppm           
 #           
 #           Based on :
 #            Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M. J. C. Eijkemans, and Y. Vergouwe. 2013. Internal Validation of Risk Models in Clustered Data: A Comparison of Bootstrap Schemes. American Journal of Epidemiology 177:1209–1217.  
@@ -45,11 +45,11 @@
 #' 
 #' Cluster Boostrap sampling is performed using [boot.sample]. 
 #' 
-#' Models are fitted using [MASS::glmmPQL] with settings specified to mimic the fitting done for MIXED models by [spatstat::mppm].     
+#' Models are fitted using [MASS::glmmPQL] with settings specified to mimic the fitting done for MIXED models by [spatstat.geom::mppm].     
 #' 
 #' 
 #' @seealso
-#' [boot.sample], [MASS::glmmPQL], [MuMIn::r.squaredGLMM], [spatstat::mppm]
+#' [boot.sample], [MASS::glmmPQL], [MuMIn::r.squaredGLMM], [spatstat.geom::mppm]
 #' 
 #' @return
 #' A dataframe where each line is a parameter of one particular model in the model set, and the averaged one (TO BE IMPLEMENTED), for each iteration

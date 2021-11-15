@@ -60,9 +60,9 @@
 focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE, addZeros=TRUE,...){
 		
 		# check arguments
-		if (is.null(to_focal) | !spatstat::is.solist(to_focal)) stop('"to_focal" must be a solist')
-		if (!is.null(W_from) & !spatstat::is.solist(W_from)) stop('"W_from" must be a solist or NULL')
-		if (!is.null(full_list) & !spatstat::is.solist(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
+		if (is.null(to_focal) | !'solist' %in% class(to_focal)) stop('"to_focal" must be a solist')
+		if (!is.null(W_from) & !'solist' %in% class(W_from)) stop('"W_from" must be a solist or NULL')
+		if (!is.null(full_list) & !'solist' %in% class(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
 		if (!is.logical(changeW)) stop('"changeW" must be logical')
 		if (!is.logical(addZeros)) stop('"addZeros" must be logical')
 		if ((changeW | addZeros ) & is.null(W_from) ) stop('Need "W_from" to change window or add zeros' )

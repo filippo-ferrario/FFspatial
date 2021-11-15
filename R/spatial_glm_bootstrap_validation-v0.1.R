@@ -9,7 +9,7 @@
 #           Extracted info are stored in a dataframe.
 #           BOOTSTRAP: normal boostrap
 #
-#           GLM is set to mimic the fitting done for Fixed models by spatstat::mppm           
+#           GLM is set to mimic the fitting done for Fixed models by spatstat.core::mppm           
 #           
 #           Based on :
 #            Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M. J. C. Eijkemans, and Y. Vergouwe. 2013. Internal Validation of Risk Models in Clustered Data: A Comparison of Bootstrap Schemes. American Journal of Epidemiology 177:1209–1217.  
