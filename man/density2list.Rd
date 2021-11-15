@@ -24,17 +24,17 @@ density2list(
 
 \item{addZeros}{logical. If TRUE (the default) and "W_from" is specified, the output will include elements with all pixels having value 0 when an element is in "W_from" but not in "to_density"}
 
-\item{...}{to pass extra arguments to \link[spatstat:density.ppp]{spatstat::density.ppp}}
+\item{...}{to pass extra arguments to \link[spatstat.core:density.ppp]{spatstat.core::density.ppp}}
 }
 \value{
 an object of class
 }
 \description{
-This function is to be used to create a variable (usually a predictor) using \link[spatstat:density.ppp]{spatstat::density.ppp} for each replicate plot to be analyzed.
+This function is to be used to create a variable (usually a predictor) using \link[spatstat.core:density.ppp]{spatstat.core::density.ppp} for each replicate plot to be analyzed.
 The intended use case:
 \itemize{
 \item a set of ppp is to be used as response varable
-\item for each ppp, the analyst wants to produce a response variable using \link[spatstat:density.ppp]{spatstat::density.ppp} based on another set of spatial point patterns.
+\item for each ppp, the analyst wants to produce a response variable using \link[spatstat.core:density.ppp]{spatstat.core::density.ppp} based on another set of spatial point patterns.
 However it is possible that the predictor ppp is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available.
 In this case the function produce an image whose pixels have all 0 value
 }
@@ -55,7 +55,7 @@ If "full_list" is specified, all its elements (either characters or names of a s
 
 }
 \seealso{
-\link{density.ppp}, \link{densityfun}
+\link[spatstat.core:density.ppp]{spatstat.core::density.ppp}, \link[spatstat.core:densityfun]{spatstat.core::densityfun}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

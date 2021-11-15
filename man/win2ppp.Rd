@@ -21,7 +21,7 @@ It should work either when the windows list is as long or longer than the ppp li
 
 }
 \seealso{
-\link{solist}, \link{Window}
+\link[spatstat.geom:solist]{spatstat.geom::solist}, \link[spatstat.geom:Window]{spatstat.geom::Window}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

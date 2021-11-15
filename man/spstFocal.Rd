@@ -9,7 +9,7 @@ spstFocal(X, W_from = NULL, dist = NULL, side.cell = NULL, ...)
 \arguments{
 \item{X}{a ppp or a owin object}
 
-\item{W_from}{a window (object of class "owin") or data acceptable to \link[spatstat:as.owin]{spatstat::as.owin}. Needed to give a spatial domain if X is an owin. Optional if X is a ppp.}
+\item{W_from}{a window (object of class "owin") or data acceptable to \link[spatstat.geom:as.owin]{spatstat.geom::as.owin}. Needed to give a spatial domain if X is an owin. Optional if X is a ppp.}
 
 \item{dist}{the size of the side of the squared moving window used to calculate the focal statistic.}
 

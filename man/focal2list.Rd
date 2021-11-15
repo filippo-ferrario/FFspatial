@@ -2,7 +2,7 @@
 % Please edit documentation in R/focal2list.R
 \name{focal2list}
 \alias{focal2list}
-\title{Apply spstFocal to the elements of the list "to_focal" with potential indtroduction of real zeros.}
+\title{Apply spstFocal to the elements of the list "to_focal" with potential introduction of real zeros.}
 \usage{
 focal2list(
   to_focal = NULL,
@@ -31,10 +31,10 @@ an object of class "imlist"  "solist"  "anylist" "listof"  "list"
 }
 \description{
 This function is to be used to create a variable (usually a predictor)  using \link{spstFocal} for each replicate plot to be analyzed.
-The intended use case:
+The intended use cases:
 \itemize{
-\item a set of ppp is to be used as response varable
-\item for each ppp, the analyst wants to produce a response variable using a focal statistic based on another set of spatial objects (e.g., owin, ppp) describing a given feature.
+\item a set of ppp is to be used as response variable
+\item for each ppp, the analyst wants to produce avariable using a focal statistic based on another set of spatial objects (e.g., owin, ppp) describing a given feature.
 However it is possible that that feature is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available.
 In this case the function produce an image whose pixels have all 0 value.
 }

@@ -19,6 +19,8 @@
 # scripts
 #======================
 
+#' Function to sample random points in random quadrats in a shapefile-like file.
+#'
 #' @param dsn path where to save output
 #' @param file_tag otpional. A tag to be attached at the name of files to dfferentiate them from others from the same function.
 #' @param shp polygon shapefile that need to be sampled.
@@ -32,6 +34,10 @@
 #' 
 #' @details 
 #' Attention about the behaviour of the function if the shp shapefile is referring to multiple sites. In this case it is better to provide the parameter "site_poly" 
+#'
+#' @author Filippo Ferrario, \email{filippo.f3rrario@gmail.com} 
+#'
+#' @export
 
 point_quadrat<-function(dsn=NULL,file_tag=NULL,shp=NULL, site_poly=NULL, n_quad=3, n_pts=6, seed=1294, quadrat_size=1 , class_lab='class',class_val=c( "Bloc ou galet","Sédiment mixte grossier") ) 
 {
