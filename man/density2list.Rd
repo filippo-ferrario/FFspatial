@@ -16,9 +16,9 @@ density2list(
 \arguments{
 \item{to_density}{a solist of ppp for which density needs to be computed}
 
-\item{W_from}{a list windows (objects of class "owin") or data acceptable to \link[spatstat:as.owin]{spatstat::as.owin}, where to look for the Window of observation to assign to to_density elements}
+\item{W_from}{a list windows (objects of class "owin") or data acceptable to \link[spatstat.geom:as.owin]{spatstat.geom::as.owin}, where to look for the Window of observation to assign to to_density elements}
 
-\item{full_list}{optional. A character vector or A list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using \link{spstFocal}. To be specified if "full_list" is a subset of W_from to avoid superflouos calculations.}
+\item{full_list}{optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed. To be specified if "full_list" is a subset of W_from to avoid superflouos calculations.}
 
 \item{changeW}{logical (default =FALSE). If TRUE  and "W_from" is specified, the Window of the elements from "W_from" is used and will replace that of elements in "to_density" (this in case X is a ppp). If FALSE the window of "to_density" elements is kept.}
 
@@ -31,10 +31,10 @@ an object of class
 }
 \description{
 This function is to be used to create a variable (usually a predictor) using \link[spatstat.core:density.ppp]{spatstat.core::density.ppp} for each replicate plot to be analyzed.
-The intended use case:
+The intended use cases are:
 \itemize{
 \item a set of ppp is to be used as response varable
-\item for each ppp, the analyst wants to produce a response variable using \link[spatstat.core:density.ppp]{spatstat.core::density.ppp} based on another set of spatial point patterns.
+\item for each ppp, the analyst wants to produce a variable describing a given feature using \link[spatstat.core:density.ppp]{spatstat.core::density.ppp}, in replicate plots where another set of spatial objects (e.g., owin, ppp) has been observed.
 However it is possible that the predictor ppp is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available.
 In this case the function produce an image whose pixels have all 0 value
 }
