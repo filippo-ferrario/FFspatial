@@ -41,7 +41,7 @@
 # merge.data.frame from base package
 
  
-merge.hyp<-function (x, y, by = intersect(names(x), names(y)), by.x = by, 
+merge_hyp<-function (x, y, by = intersect(names(x), names(y)), by.x = by, 
     by.y = by, sort = TRUE, 
     suffixes = c(".x", ".y"), no.dups = TRUE, incomparables = NULL, 
     ...) 
@@ -79,9 +79,7 @@ merge.hyp<-function (x, y, by = intersect(names(x), names(y)), by.x = by,
                 domain = NA)
         unique(by)
     }
-
-
-
+    
 {  # create a copy of the hyperframe to be used to create the output
     x.hyp <- x
     y.hyp <- y
