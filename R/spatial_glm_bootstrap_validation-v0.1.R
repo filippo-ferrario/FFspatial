@@ -39,7 +39,7 @@
 #' Bootstrap sampling is performed internally.
 #' [TO BE IMPLEMENTED] At each iteration the models in the model set are also averaged and the parameter of the shrinked model saved.
 #' 
-#' The R^2^ is calculated using [uMIn::r.squaredGLMM]
+#' The R^2^ is calculated using [MuMIn::r.squaredGLMM]
 #'  
 #' @return
 #' A dataframe from which calculate the average optimism to be used to correct the model fitted on the original dataset.
@@ -51,6 +51,7 @@
 #' @export 
 #' 
 #' 
+
 spt_glm_bts_val<-function( mod_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,...)
 
 {

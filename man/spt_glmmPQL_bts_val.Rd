@@ -52,14 +52,14 @@ This function should be used to produce the dataframe from which calculate the a
 
 Cluster Boostrap sampling is performed using \link{boot.sample}.
 
-Models are fitted using \link[MASS:glmmPQL]{MASS::glmmPQL} with settings specified to mimic the fitting done for MIXED models by \link[spatstat.geom:mppm]{spatstat.geom::mppm}.
+Models are fitted using \link[MASS:glmmPQL]{MASS::glmmPQL} with settings specified to mimic the fitting done for MIXED models by \link[spatstat.core:mppm]{spatstat.core::mppm}.
 }
 \references{
 Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M. J. C. Eijkemans, and Y. Vergouwe. 2013. Internal Validation of Risk Models in Clustered Data: A Comparison of Bootstrap Schemes. American Journal of Epidemiology 177:1209–1217.
 Harrell, F. E. 2015. Regression Modeling Strategies. Springer International Publishing, Cham. (Chapter 5)
 }
 \seealso{
-\link{boot.sample}, \link[MASS:glmmPQL]{MASS::glmmPQL}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link[spatstat.geom:mppm]{spatstat.geom::mppm}
+\link{boot.sample}, \link[MASS:glmmPQL]{MASS::glmmPQL}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link[spatstat.core:mppm]{spatstat.core::mppm}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

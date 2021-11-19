@@ -31,7 +31,7 @@ The function fits the models in the model set \code{mod_fmla} to the origial dat
 Bootstrap sampling is performed internally.
 \link{TO BE IMPLEMENTED} At each iteration the models in the model set are also averaged and the parameter of the shrinked model saved.
 
-The R^2^ is calculated using \link[uMIn:r.squaredGLMM]{uMIn::r.squaredGLMM}
+The R^2^ is calculated using \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
