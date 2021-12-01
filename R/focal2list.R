@@ -57,6 +57,7 @@
 
 focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE, addZeros=TRUE,...){
 		
+		extras<-list(...)	
 		# check arguments
 		if (is.null(to_focal) | !'solist' %in% class(to_focal)) stop('"to_focal" must be a solist')
 		if (!is.null(W_from) & !'solist' %in% class(W_from)) stop('"W_from" must be a solist or NULL')
@@ -64,8 +65,7 @@ focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE
 		if (!is.logical(changeW)) stop('"changeW" must be logical')
 		if (!is.logical(addZeros)) stop('"addZeros" must be logical')
 		if ((changeW | addZeros ) & is.null(W_from) ) stop('Need "W_from" to change window or add zeros' )
-		if (addZeros==TRUE & !('side.cell' %in% list(...)) ) stop('Please specify side.cell since addZeros is TRUE' )
-
+		if (addZeros==TRUE & !('side.cell' %in% names(extras)) ) stop('Please specify side.cell since addZeros is TRUE' )
 		# coherce full_list to character
 		if ('solist' %in% class(full_list)) full_list<-names(full_list)	
 		
@@ -108,7 +108,7 @@ focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE
 						res<-spstFocal(X=x[[1]], W_from=Y[[1]]  ,... )  # , dist=0.5, side.cell=0.1, pad=T, padValue=NA, fun=mean,na.rm=T
 				}
 				if  (sum(names(to_focal) == K) ==0){
-					if('side.cell' %in% list(...)) eps<-c(side.cell,side.cell) else eps<-NULL
+					if('side.cell' %in% names(extras)) eps<-rep(extras$side.cell,2) else eps<-NULL
 					res<-spatstat.geom::as.im(spatstat.geom::Window(Y[[1]]), value=0,eps=eps)		
 				}
 				res		
