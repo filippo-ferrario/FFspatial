@@ -79,7 +79,7 @@ spstFocal<-function(X, W_from=NULL, dist=NULL, side.cell=NULL, ...){
         				# 1) pixellate the owin object with the Transect window.
         				p2<-spatstat.geom::pixellate.owin(X, W=WW, ..., eps=c(side.cell,side.cell))
         				# 2) assign the spatial domain of the transect
-        				int<-spatstat.geom::as.im(p2,W=WW)
+        				int<-spatstat.geom::as.im(p2,W=WW, eps=c(side.cell,side.cell))
         				# 3) convert image to a rasterLayer
         				ras<-raster::raster(int)
         		}
@@ -98,8 +98,8 @@ spstFocal<-function(X, W_from=NULL, dist=NULL, side.cell=NULL, ...){
 			# fix spatial indexing
 			m<- spatstat.geom::transmat(m, from='European', to ='spatstat')
 			# convert back to image object
-			mean_im<-spatstat.geom::as.im(m, WW)
-			im2<-spatstat.geom::as.im(mean_im,WW)
+			mean_im<-spatstat.geom::as.im(m, WW,eps=c(side.cell,side.cell))
+			im2<-spatstat.geom::as.im(mean_im,WW,eps=c(side.cell,side.cell))
 			im2
 }
 
