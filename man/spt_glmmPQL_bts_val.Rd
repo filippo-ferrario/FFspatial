@@ -12,6 +12,7 @@ spt_glmmPQL_bts_val(
   dataset = NULL,
   column_group = NULL,
   RAN.pred = FALSE,
+  reltol = 0.001,
   ...
 )
 }
@@ -29,6 +30,8 @@ spt_glmmPQL_bts_val(
 \item{column_group}{character name of the dataset column with grouping.}
 
 \item{RAN.pred}{logical. Specify if using or not the random factor to obtain predictions. Defaults to FALSE. see Details and \link[nlme:predict.lme]{nlme::predict.lme}}
+
+\item{reltol}{as in spatstat.core::mppm.}
 
 \item{...}{used to pass arguments to \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM} (e.g. pj2014)}
 }
@@ -52,14 +55,14 @@ This function should be used to produce the dataframe from which calculate the a
 
 Cluster Boostrap sampling is performed using \link{boot.sample}.
 
-Models are fitted using \link[MASS:glmmPQL]{MASS::glmmPQL} with settings specified to mimic the fitting done for MIXED models by \link[spatstat.core:mppm]{spatstat.core::mppm}.
+Models are fitted using \link[spatstat.core:spatstat.core-internal]{spatstat.core::hackglmmPQL} with family set to quasipoisson(link = log) to allow using \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}.
 }
 \references{
 Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M. J. C. Eijkemans, and Y. Vergouwe. 2013. Internal Validation of Risk Models in Clustered Data: A Comparison of Bootstrap Schemes. American Journal of Epidemiology 177:1209–1217.
 Harrell, F. E. 2015. Regression Modeling Strategies. Springer International Publishing, Cham. (Chapter 5)
 }
 \seealso{
-\link{boot.sample}, \link[MASS:glmmPQL]{MASS::glmmPQL}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link[spatstat.core:mppm]{spatstat.core::mppm}
+\link{boot.sample}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link[spatstat.core:mppm]{spatstat.core::mppm}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
