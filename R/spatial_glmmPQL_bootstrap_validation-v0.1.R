@@ -37,6 +37,7 @@
 #' @param dataset full dataset
 #' @param column_group character name of the dataset column with grouping.
 #' @param RAN.pred logical. Specify if using or not the random factor to obtain predictions. Defaults to FALSE. see Details and [nlme::predict.lme]
+#' @param reltol as in spatstat.core::mppm.
 #' @param ... used to pass arguments to [MuMIn::r.squaredGLMM] (e.g. pj2014)
 #' 
 #' @details
@@ -70,7 +71,7 @@
 #' @export  
 
 
-spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,column_group=NULL, RAN.pred=FALSE, ...)
+spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,column_group=NULL, RAN.pred=FALSE, reltol=0.001, ...)
 
 {
   # checks
@@ -80,10 +81,10 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
   # Function to fit models with MASS:glmmPQL
   myPQL<-function(fmla=NULL, df_to_fit=NULL)
   	{ 
-      MASS::glmmPQL(fixed = as.formula(fmla), random =as.formula(random_fmla), 
+      hackglmmPQL(fixed = as.formula(fmla), random =as.formula(random_fmla), 
   		     	  	  family = quasipoisson(link = log),
   					  data=df_to_fit, weights = .mpl.W * caseweight, 
-  					  control = attr(fixed, "ctrl"))
+  					  control = attr(fixed, "ctrl"), reltol=reltol)
   	}
 
   # function to extract info form list of models to a dataframe
@@ -174,4 +175,5 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
 }
 
 # Changes:
-# 2020-10-19 Adde tryCatch in the for loop of the bootstrap to allow model fitting failures
+# 2020-10-19 Added tryCatch in the for loop of the bootstrap to allow model fitting failures
+# 2021-12-02 replaced MASS::glmmPQL with spatstat.core::hackglmmPQL and added retol as function argument
