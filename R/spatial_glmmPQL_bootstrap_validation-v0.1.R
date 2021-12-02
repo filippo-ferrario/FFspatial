@@ -46,11 +46,11 @@
 #' 
 #' Cluster Boostrap sampling is performed using [boot.sample]. 
 #' 
-#' Models are fitted using [MASS::glmmPQL] with settings specified to mimic the fitting done for MIXED models by [spatstat.core::mppm].     
+#' Models are fitted using [spatstat.core::hackglmmPQL] with family set to quasipoisson(link = log) to allow using [MuMIn::r.squaredGLMM].     
 #' 
 #' 
 #' @seealso
-#' [boot.sample], [MASS::glmmPQL], [MuMIn::r.squaredGLMM], [spatstat.core::mppm]
+#' [boot.sample], [MuMIn::r.squaredGLMM], [spatstat.core::mppm]
 #' 
 #' @return
 #' A dataframe where each line is a parameter of one particular model in the model set, and the averaged one (TO BE IMPLEMENTED), for each iteration
@@ -78,7 +78,7 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
   if (!is.character(column_group)) stop('column_group must be the name of the dataset column with grouping.')
   if (is.null(names(mod_fmla))) stop('mod_fmla must be a NAMED vector. see help. ')
 
-  # Function to fit models with MASS:glmmPQL
+  # Function to fit models with spatstat.core::hackglmmPQL
   myPQL<-function(fmla=NULL, df_to_fit=NULL)
   	{ 
       hackglmmPQL(fixed = as.formula(fmla), random =as.formula(random_fmla), 
