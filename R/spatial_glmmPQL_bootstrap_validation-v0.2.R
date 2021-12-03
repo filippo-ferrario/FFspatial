@@ -113,7 +113,7 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
                            Z <- (obs_dataset$.mpl.Y != 0)
                            maxlogpl<- -(deviants/2 + sum(log(W[Z & SUBSET])) + sum(Z & SUBSET))
                            ll <- logLik(maxlogpl)
-                           pen <- length(coef(m_spst))
+                           pen <- length(coef(m))
                            
                            (-2 * as.numeric(ll) + 2 * pen)
 
@@ -192,3 +192,4 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
 # Changes:
 # 2020-10-19 Added tryCatch in the for loop of the bootstrap to allow model fitting failures
 # 2021-12-02 replaced MASS::glmmPQL with spatstat.core::hackglmmPQL and added retol as function argument
+# 2021-12-03 Added AIC formula
