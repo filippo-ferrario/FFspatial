@@ -90,7 +90,7 @@ spt_glm_bts_val<-function( mod_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,...)
                            Z <- (obs_dataset$.mpl.Y != 0)
                            maxlogpl<- -(deviants/2 + sum(log(W[Z & SUBSET])) + sum(Z & SUBSET))
                            ll <- maxlogpl
-                           pen <- length(coef(gm))
+                           pen <- length(coef(m))
                            (-2 * as.numeric(ll) + 2 * pen)
                           }
                   aic_v=aic(mod) 
