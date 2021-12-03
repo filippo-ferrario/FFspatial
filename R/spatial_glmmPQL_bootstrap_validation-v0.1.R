@@ -68,7 +68,7 @@
 #' 
 #' @author Filippo Ferrario, \email{filippo.f3rrario@gmail.com} 
 #' 
-#' @export  
+  
 
 
 spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,column_group=NULL, RAN.pred=FALSE, reltol=0.001, ...)
@@ -99,7 +99,7 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
                   betas_name<-names(betas)
                   # performance training
                   lev.pr<-ifelse(RAN.pred==FALSE,0,1)
-                  pr.train<- predict(mod, level=lev.pr )  # set to 0 To match re.form=NA in Bouwmeester et al 2013. see ?predict.lme : Level values increase from outermost to innermost grouping, with level zero corresponding to the population predictions. 
+                  pr.train<- stats::predict(mod, level=lev.pr )  # set to 0 To match re.form=NA in Bouwmeester et al 2013. see ?predict.lme : Level values increase from outermost to innermost grouping, with level zero corresponding to the population predictions. 
                   fit.train<-exp(pr.train) # to check that is correct : sum ((fit.train) != predict(mod, re.form=NA, type='response' ) ) 
                   Y.train<-mod$data[,Y_col]
                   rmse.train<- sqrt( mean( (fit.train - Y.train)^2 ))
@@ -112,7 +112,7 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
                                 r2.train[row.names(r2.train)=='delta', 'R2c']) 
                   # performance test
                   if (Bootstrap==TRUE){
-                                    pr.test<-predict(mod, newdata=obs_dataset, level=0) # set to 0 To match re.form=NA in Bouwmeester et al 2013. see ?predict.lme : Level values increase from outermost to innermost grouping, with level zero corresponding to the population predictions. 
+                                    pr.test<-stats::predict(mod, newdata=obs_dataset, level=0) # set to 0 To match re.form=NA in Bouwmeester et al 2013. see ?predict.lme : Level values increase from outermost to innermost grouping, with level zero corresponding to the population predictions. 
                                     fit.test<-exp(pr.test)
                                     Y.test<-obs_dataset[,Y_col]
                                     rmse.test<- sqrt( mean( (fit.test - Y.test)^2 ))
