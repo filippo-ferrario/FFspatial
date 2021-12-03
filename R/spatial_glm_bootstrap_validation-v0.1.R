@@ -83,9 +83,21 @@ spt_glm_bts_val<-function( mod_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,...)
                   r2.train<-MuMIn::r.squaredGLMM(mod, envir=e)
                   # prepare info to be stores
                   if(is.null(betas_name)) betas_name<-'(Intercept)'
-                  param<-c(betas_name,'rmse','r2_mar') 
+                  aic<-function(m=mod) { # written from code in mppm, logLik and AIC.mppm
+                           deviants <- deviance(m)
+                           W <- with(obs_dataset, .mpl.W * caseweight)
+                           SUBSET <- obs_dataset$.mpl.SUBSET
+                           Z <- (obs_dataset$.mpl.Y != 0)
+                           maxlogpl<- -(deviants/2 + sum(log(W[Z & SUBSET])) + sum(Z & SUBSET))
+                           ll <- maxlogpl
+                           pen <- length(coef(gm))
+                           (-2 * as.numeric(ll) + 2 * pen)
+                          }
+                  aic_v=aic(mod) 
+                  param<-c(betas_name,'rmse','r2_mar','AIC') 
                   vals<-c(betas,rmse.train,
-                                r2.train[row.names(r2.train)=='delta', 'R2m']) # see ?MuMIn::r.squaredGLMM : "The delta method can be used with for all distributions and link functions")                        
+                                r2.train[row.names(r2.train)=='delta', 'R2m'],  # see ?MuMIn::r.squaredGLMM : "The delta method can be used with for all distributions and link functions")                        
+                                AIC=aic_v)
                   # performance test
                   if (Bootstrap==TRUE){
                                     pr.test<-predict(mod, newdata=obs_dataset)
@@ -151,3 +163,5 @@ spt_glm_bts_val<-function( mod_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,...)
     }
 }
 
+# Changes:
+# 2021-12-03 Added AIC formula
