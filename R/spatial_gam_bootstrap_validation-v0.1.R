@@ -24,7 +24,7 @@
 
 #' Internal Validation with bootstrap
 #' 
-#' Function to fit a set of GLM models to both whole dataset and replicate bootstapped datasets.
+#' Function to fit a set of [mgcv::gam] models to both whole dataset and replicate bootstapped datasets.
 #' The function extract the model parameters, RMSE and R^2^ of each model runs, and calculate the RMSE optimism at each run.
 #' 
 #' @param mod_fmla character vectror with formulas of the models to be fit. It must be a named vector regardless of its length.
