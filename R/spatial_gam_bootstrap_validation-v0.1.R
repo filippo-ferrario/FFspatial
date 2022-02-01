@@ -155,7 +155,7 @@ spt_gam_bts_val<-function( mod_fmla=NULL, Y_col=NULL, B=200,dataset=NULL,...)
                 # extract info from boostrapped model and store them in a dataframe
                 info<-model_to_dataframe(model_list=M1, frame_template=res, obs_dataset=dataset, Y_col=Y_col, Bootstrap=TRUE) 
                 res.boot<-rbind(res.boot, info)
-             })#, error=function(e){})    
+             }, error=function(err){})    
       }    
     
       out<-rbind(infoM0,res.boot)
