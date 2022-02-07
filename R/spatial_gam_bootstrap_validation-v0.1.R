@@ -46,7 +46,6 @@
 #'
 #' @author Filippo Ferrario, \email{filippo.f3rrario@gmail.com} 
 #' 
-#' @export 
 #' 
 #' 
 
