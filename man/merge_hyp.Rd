@@ -40,9 +40,6 @@ Modified from merge.data.frame.
 Currently only implemented to perform merge with all=FALSE
 Appending a suffix and renaming of variables is not implemented
 }
-\examples{
-
-}
 \seealso{
 \link{hyperframe}, \link{merge}
 }

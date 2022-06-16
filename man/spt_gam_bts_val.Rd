@@ -47,6 +47,4 @@ Bootstrap sampling is performed internally.
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
-
-Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
 }

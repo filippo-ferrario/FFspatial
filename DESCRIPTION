@@ -6,5 +6,5 @@ Description: Miscellaneous functions code through time to perform different task
 Author: Filippo Ferrario <filippo.f3rrario@gmail.com>
 Maintainer: Filippo Ferrario <filippo.f3rrario@gmail.com>
 Depends: MuMIn (>= 1.43.17), raster, spatstat
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)

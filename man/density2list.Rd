@@ -51,9 +51,6 @@ Lists are compared by names so technically the order should not be important.
 If some elements in "to_density" are not contained in "full_list" (either not present or misspelled) a warning is given.
 If "full_list" is specified, all its elements (either characters or names of a solist) must be included in "W_from" otherwise an error is thrown.
 }
-\examples{
-
-}
 \seealso{
 \link[spatstat.core:density.ppp]{spatstat.core::density.ppp}, \link[spatstat.core:densityfun]{spatstat.core::densityfun}
 }

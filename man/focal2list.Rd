@@ -54,9 +54,6 @@ If "full_list" is specified, all its elements (either characters or names of a s
 Verify to check the value of the argument DivdideByPixelArea passed to \link[spatstat.geom:pixellate]{spatstat.geom::pixellate} via \link{spstFocal}.
 Default is FALSE!
 }
-\examples{
-
-}
 \seealso{
 \link{spstFocal}, \link[spatstat.geom:pixellate]{spatstat.geom::pixellate}, \link[spatstat.geom:pixellate.owin]{spatstat.geom::pixellate.owin}, \link[spatstat.geom:pixellate.ppp]{spatstat.geom::pixellate.ppp}, \link{focal}
 }

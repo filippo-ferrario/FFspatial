@@ -50,9 +50,6 @@ Common steps:
 5) extract the data matrix and return the output as an \code{im} object
 }
 }
-\examples{
-
-}
 \seealso{
 \link{pixellate.owin}, \link{pixellate.ppp}, \link{focal}, \link{focal2list}
 }

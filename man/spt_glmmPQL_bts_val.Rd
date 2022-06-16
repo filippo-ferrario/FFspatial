@@ -103,6 +103,4 @@ Harrell, F. E. 2015. Regression Modeling Strategies. Springer International Publ
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
-
-Filippo Ferrario, \email{filippo.f3rrario@gmail.com}
 }
