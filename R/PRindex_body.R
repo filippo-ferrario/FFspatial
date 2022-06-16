@@ -17,7 +17,7 @@
 #' @details   
 #' 
 #' The `PRindex_body` is calculated as:
-#' \deqn = \sum_{n=1}^{n} \frac{A}{\frac{D}{mean~~body~~lenght}}
+#' \deqn{PR = \sum_{n=1}^{n} \frac{A}{\frac{D}{mean~~body~~lenght}}}
 #' 
 #' where _A_ is the area of the _i_ polygon in a buffer of a given radius, and _D_ is the distance of that polygon to the center of the buffer.
 #' 

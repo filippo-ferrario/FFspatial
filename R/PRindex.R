@@ -17,7 +17,7 @@
 #' @details   
 #' 
 #' The `PRindex` is calculated as:
-#' \deqn PR = \sum_{n=1}^{n} \frac{A}{D}
+#' \deqn{PR = \sum_{n=1}^{n} \frac{A}{D}}
 #' where _A_ is the area of the _i_ polygon in a buffer of a given radius, and _D_ is the distance of that polygon to the center of the buffer.
 #' 
 #' 

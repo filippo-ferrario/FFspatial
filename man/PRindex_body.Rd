@@ -20,7 +20,7 @@ Patch Relevance index calculated within a buffer.
 }
 \details{
 The \code{PRindex_body} is calculated as:
-\deqn = \sum_{n=1}^{n} \frac{A}{\frac{D}{mean~~body~~lenght}}
+\deqn{PR = \sum_{n=1}^{n} \frac{A}{\frac{D}{mean~~body~~lenght}}}
 
 where \emph{A} is the area of the \emph{i} polygon in a buffer of a given radius, and \emph{D} is the distance of that polygon to the center of the buffer.
 }
