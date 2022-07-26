@@ -37,11 +37,16 @@ PRindex_body<-function(cx, poly, one_body_length=0.03, buffer=5){
 	# inID<-which(st_contains(cx,poly, sparse=FALSE)==T)
 	buff<-st_buffer(cx, dist=buffer)
 	poly<-st_intersection(poly,buff)
-	area<-st_area(poly)
-	bdlt<-st_distance(cx,poly,sparse=FALSE)/one_body_length
-	bdlt[bdlt>0 & bdlt<1]<-1
-	bdlt[bdlt==0]<-0.5
-	res<-sum(area/bdlt)
+	if (is.empty(poly)){
+		res<-0
+	} else {
+	    area<-st_area(poly)
+		bdlt<-st_distance(cx,poly,sparse=FALSE)/one_body_length
+		units(bdlt)<-NULL # remove units to allow replacement, since we don't consider body_length as a unit 
+		bdlt[bdlt>0 & bdlt<1]<-1
+		bdlt[bdlt==0]<-0.5
+		res<-sum(area/bdlt)
+	}
 	res
 }
 

@@ -36,10 +36,34 @@
 PRindex<-function(cx, poly, buffer=5, zero_distance=0.01){
 	buff<-st_buffer(cx, dist=buffer)
 	poly<-st_intersection(poly,buff)
-	area<-st_area(poly)
-	bdlt<-st_distance(cx,poly)
-	bdlt[bdlt<zero_distance]<-zero_distance # arbitrairily choose as zero_distance. all distances which are less than zero_distance are set to this value.
-	# bdlt[bdlt>0 & bdlt<1]<-1
-	res<-sum(area/bdlt)
+	if (is.empty(poly)){
+		res<-0
+	} else {
+		area<-st_area(poly)
+		bdlt<-st_distance(cx,poly)
+		if(class(bdlt)=='units') {units(zero_distance)<-units(bdlt)$numerator}  # This is needed in case when poly has units, otherwise the replacement with zero_distance fails
+		bdlt[bdlt<zero_distance]<-zero_distance # arbitrairily choose as zero_distance. all distances which are less than zero_distance are set to this value.
+		# bdlt[bdlt>0 & bdlt<1]<-1
+		res<-sum(area/bdlt)
+	}
 	res
 }
+
+
+
+# # Bench
+# # ------------------------
+
+
+#  case with no polygon in buffer
+pts1<-rbind(c(0,0),c(0,10),c(10,10), c(10,0), c(0,0))
+pol1<-st_polygon(list(pts1))
+pol1<-st_sfc(pol1)
+
+polys<-st_buffer(st_point(c(1,1)), dist=0.1)
+cx<-st_point(c(5,5))
+
+plot(pol1)
+plot(polys, add=T)
+
+PRindex(cx=cx, poly=polys, buffer=1,zero_distance=0.01)
