@@ -29,7 +29,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' [PRindex_body], [sf::st_point], [sf::st_buffer], [FFspatial::PRindex]
+#' [PRindex_body], [sf::st_point], [sf::st_buffer], [FFspatial::PRindex],  [FFspatial::map2raster]
 #' 
 #' 
 #' @export 
@@ -75,7 +75,7 @@ PatchRelv<-function(poly,buffer, cx, zero_distance=0.01){
 # # -----------
 # # Bench
 # # -----------
-# # data in sf format
+# data in sf format
 # trssf<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
 # sbs_vect<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
 # rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')

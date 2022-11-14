@@ -59,29 +59,29 @@ PatchNum<-function(poly,buffer, cx ){
 # -----------
 # Bench
 # -----------
-# # data in sf format
-trssf<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
-sbs_vect<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
-rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
+# # # data in sf format
+# trssf<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
+# sbs_vect<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
+# rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
 
-cx<-st_geometry(st_centroid(trssf[1,]))
-new<-st_buffer(cx, dist=2)
-bfr<-st_geometry(st_buffer(cx, dist=1))
+# cx<-st_geometry(st_centroid(trssf[1,]))
+# new<-st_buffer(cx, dist=2)
+# bfr<-st_geometry(st_buffer(cx, dist=1))
 
 
-# PatchNum(poly=rcksf, buffer=bfr, cx)
+# # PatchNum(poly=rcksf, buffer=bfr, cx)
 
-# plot(new)
-# plot(rcksf,add=T)
-# plot(new,add=T)
+# # plot(new)
+# # plot(rcksf,add=T)
+# # plot(new,add=T)
+# # plot(bfr,add=T)
+
+# PatchNum(poly=sbs_vect, buffer=bfr, cx)
+
+# # plot(new)
+# plot(bfr,add=F)
+# plot(sbs_vect,add=T)
 # plot(bfr,add=T)
-
-PatchNum(poly=sbs_vect, buffer=bfr, cx)
-
-# plot(new)
-plot(bfr,add=F)
-plot(sbs_vect,add=T)
-plot(bfr,add=T)
 
 
 
