@@ -18,7 +18,7 @@ PRindex_raster<-function(obs_polygon, side.cell=0.1, poly, buffer=5, zero_distan
 	sam_pts<-st_centroid(regrd)
 	# create buffers per each point
 	buffs<-st_buffer(sam_pts, dist=buffer)
-	# MERTRIC BLOCK
+	# METRIC BLOCK
 	# ------------------
 		# intersect each buffer with polygons
 		int_list<-mapply( function(bf, cx) { 
@@ -61,52 +61,53 @@ PRindex_raster<-function(obs_polygon, side.cell=0.1, poly, buffer=5, zero_distan
 }
 
 
-# -----------
-# Bench
-# -----------
-# data in sf format
-trssf<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
-sbs_vect<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
-rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
+# # -----------
+# # Bench
+# # -----------
+# # data in sf format
+# trssf<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
+# sbs_vect<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
+# rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
 
 
-new<-st_buffer(st_centroid(trssf[1,]), dist=2)
-obs_polygon=new
-side.cell=0.5
-poly=rcksf
-buffer=1 
-zero_distance=0.01
+# new<-st_buffer(st_centroid(trssf[1,]), dist=2)
+# obs_polygon=new
+# side.cell=0.5
+# poly=rcksf
+# buffer=1 
+# zero_distance=0.01
 
-#  test
-new<-st_buffer(st_centroid(trssf[1,]), dist=2)
-system.time(
-mt1<-PRindex_raster(obs_polygon=new, side.cell=0.1,poly=rcksf, buffer=1, zero_distance=0.01) 
-)
+# #  test
+# new<-st_buffer(st_centroid(trssf[1,]), dist=2)
+# system.time(
+# mt1<-PRindex_raster(obs_polygon=new, side.cell=0.1,poly=rcksf, buffer=1, zero_distance=0.01) 
 
- #   user  system elapsed 
- # 200.70    3.74  207.44 
- #   user  system elapsed 
- # 214.27    4.42  219.95
- #   user  system elapsed 
- # 279.72    4.83  285.36 
-mean(c(207.44,219.95,285.36 ))
+# )
+
+#  #   user  system elapsed 
+#  # 200.70    3.74  207.44 
+#  #   user  system elapsed 
+#  # 214.27    4.42  219.95
+#  #   user  system elapsed 
+#  # 279.72    4.83  285.36 
+# mean(c(207.44,219.95,285.36 ))
 
 
 
-system.time(
-mt2<-PRindex_raster(obs_polygon=trssf[1,], side.cell=0.5, poly=rcksf, buffer=1, zero_distance=0.01) 
-)
-# user  system elapsed 
- # 454.00    8.88  467.51 
- # 441.18    7.70  456.66 
+# system.time(
+# mt2<-PRindex_raster(obs_polygon=trssf[1,], side.cell=0.5, poly=rcksf, buffer=1, zero_distance=0.01) 
+# )
+# # user  system elapsed 
+#  # 454.00    8.88  467.51 
+#  # 441.18    7.70  456.66 
 
-p1<-st_point(c(595604.9,5461802))
-p2<-st_point(c(595604.0,5461802))
+# p1<-st_point(c(595604.9,5461802))
+# p2<-st_point(c(595604.0,5461802))
 
-id<-mt2[]<50
-mt3<-mt2;mt3[!id]<-NA ;mt3[mt3[]==0]<--99
-plot(st_geometry(trssf[1,]),xlim=(c(5,-5)+595592.4), ylim=(c(5,-5)+5461802))
-raster::plot(mt2, useRaster=F, add=T)
-plot(st_geometry(rcksf), add=T, border=1, col=0)
-# plot(new, add=T, c
-								
+# id<-mt2[]<50
+# mt3<-mt2;mt3[!id]<-NA ;mt3[mt3[]==0]<--99
+# plot(st_geometry(trssf[1,]),xlim=(c(5,-5)+595592.4), ylim=(c(5,-5)+5461802))
+# raster::plot(mt2, useRaster=F, add=T)
+# plot(st_geometry(rcksf), add=T, border=1, col=0)
+# # plot(new, add=T, c
+# 								

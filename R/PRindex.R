@@ -55,15 +55,15 @@ PRindex<-function(cx, poly, buffer=5, zero_distance=0.01){
 # # ------------------------
 
 
-#  case with no polygon in buffer
-pts1<-rbind(c(0,0),c(0,10),c(10,10), c(10,0), c(0,0))
-pol1<-st_polygon(list(pts1))
-pol1<-st_sfc(pol1)
+# #  case with no polygon in buffer
+# pts1<-rbind(c(0,0),c(0,10),c(10,10), c(10,0), c(0,0))
+# pol1<-st_polygon(list(pts1))
+# pol1<-st_sfc(pol1)
 
-polys<-st_buffer(st_point(c(1,1)), dist=0.1)
-cx<-st_point(c(5,5))
+# polys<-st_buffer(st_point(c(1,1)), dist=0.1)
+# cx<-st_point(c(5,5))
 
-plot(pol1)
-plot(polys, add=T)
+# plot(pol1)
+# plot(polys, add=T)
 
-PRindex(cx=cx, poly=polys, buffer=1,zero_distance=0.01)
+# PRindex(cx=cx, poly=polys, buffer=1,zero_distance=0.01)

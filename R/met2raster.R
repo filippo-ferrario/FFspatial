@@ -9,7 +9,7 @@
 
 #' 
 #' 
-#' @param obs_polygon 
+#' @param obs_polygon polygon delimiting the area observed (e.g., a transect)
 #' @param ... the distance value that will be used to calculate the Area:distance ratio when `cx` falls in a patch. All distances < than `zero_distance` will be set to this.
 #' @param side.cell the size of the (squared) pixel side to be used to subdivide the observation window (i.e., the polygon defining the extent of the raster to be produced).
 #' @param make_spatstat_im logical (default=TRUE). Should the output be a [spatstat.geom::im] object for `spatstat` rather than a [raster::raster]? 
@@ -26,7 +26,7 @@
 #' [PRindex_body], [sf::st_point], [sf::st_buffer]
 #' 
 #' 
-#' @export 
+
 
  
 met2raster<-function(obs_polygon, side.cell=0.1, FUN,make_spatstat_im=TRUE,...) {
@@ -59,57 +59,57 @@ met2raster<-function(obs_polygon, side.cell=0.1, FUN,make_spatstat_im=TRUE,...) 
 }
 
 
-# -----------
-# Bench
-# -----------
-# data in sf format
-trssf<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
-sbs_vect<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
-rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
+# # -----------
+# # Bench
+# # -----------
+# # data in sf format
+# trssf<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
+# sbs_vect<-sf::st_read('DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
+# rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
 
 
-# data in spatstat format
-load('DFO-Godbout-2020-localSDM/R_output/R_objects/windows-rocks.Rdata')
-load('DFO-Godbout-2020-localSDM/R_output/R_objects/windows-transects.Rdata')
+# # data in spatstat format
+# load('DFO-Godbout-2020-localSDM/R_output/R_objects/windows-rocks.Rdata')
+# load('DFO-Godbout-2020-localSDM/R_output/R_objects/windows-transects.Rdata')
 
 
 
-# test 
+# # test 
 
-# r1<-met2raster(obs_polygon=trssf[1,], side.cell=0.1, metric=PRindex,make_spatstat_im=TRUE,poly=st_geometry(rcksf), buffer=5, zero_distance=0.01) 
+# # r1<-met2raster(obs_polygon=trssf[1,], side.cell=0.1, metric=PRindex,make_spatstat_im=TRUE,poly=st_geometry(rcksf), buffer=5, zero_distance=0.01) 
 
-new<-st_buffer(st_centroid(trssf[1,]), dist=2)
-system.time(
-r1<-met2raster(obs_polygon=new, side.cell=0.1, PRindex,make_spatstat_im=TRUE,poly=rcksf, buffer=1, zero_distance=0.01) 
-)
+# new<-st_buffer(st_centroid(trssf[1,]), dist=2)
+# system.time(
+# r1<-met2raster(obs_polygon=new, side.cell=0.1, PRindex,make_spatstat_im=TRUE,poly=rcksf, buffer=1, zero_distance=0.01) 
+# )
 
- # #   user  system elapsed 
- # # 217.00    4.03  226.13 
- # #   user  system elapsed 
- # # 286.80    5.67  305.14
- #   user  system elapsed 
- # 235.86    3.88  240.43 
+#  # #   user  system elapsed 
+#  # # 217.00    4.03  226.13 
+#  # #   user  system elapsed 
+#  # # 286.80    5.67  305.14
+#  #   user  system elapsed 
+#  # 235.86    3.88  240.43 
 
- mean( c(226.13 , 305.14,240.43 ))
+#  mean( c(226.13 , 305.14,240.43 ))
 
-system.time(
-r2<-met2raster(obs_polygon=trssf[1,], side.cell=0.5, PRindex,make_spatstat_im=TRUE,poly=rcksf, buffer=1, zero_distance=0.01) 
-)
+# system.time(
+# r2<-met2raster(obs_polygon=trssf[1,], side.cell=0.5, PRindex,make_spatstat_im=TRUE,poly=rcksf, buffer=1, zero_distance=0.01) 
+# )
 
-#   user  system elapsed 
-# 571.76   11.31  599.86
-# 494.75    8.64  525.50 
+# #   user  system elapsed 
+# # 571.76   11.31  599.86
+# # 494.75    8.64  525.50 
 
 
-p1<-st_point(c(595604.9,5461802))
-p2<-st_point(c(595604.0,5461802))
+# p1<-st_point(c(595604.9,5461802))
+# p2<-st_point(c(595604.0,5461802))
 
-id<-r2[]<50
-r3<-r2; r3[!id]<-NA ; r3[r3[]==0]<--99
-plot(st_geometry(trssf[1,]),xlim=(c(5,-5)+595592.4), ylim=(c(5,-5)+5461802))
-raster::plot(r2, useRaster=F, add=T)
-plot(st_geometry(rcksf), add=T, border=1, col=0)
-# plot(new, add=T, col=0, border='red')
-# plot(c(p1,p2),add=T, col=c('blue','red'), pch=16)
-# plot(c(st_buffer(p1, dist=1),st_buffer(p2, dist=1)), add=T, col=0, border=c('blue','red'))
+# id<-r2[]<50
+# r3<-r2; r3[!id]<-NA ; r3[r3[]==0]<--99
+# plot(st_geometry(trssf[1,]),xlim=(c(5,-5)+595592.4), ylim=(c(5,-5)+5461802))
+# raster::plot(r2, useRaster=F, add=T)
+# plot(st_geometry(rcksf), add=T, border=1, col=0)
+# # plot(new, add=T, col=0, border='red')
+# # plot(c(p1,p2),add=T, col=c('blue','red'), pch=16)
+# # plot(c(st_buffer(p1, dist=1),st_buffer(p2, dist=1)), add=T, col=0, border=c('blue','red'))
 
