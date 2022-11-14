@@ -11,7 +11,7 @@ PatchRelv(poly, buffer, cx, zero_distance = 0.01)
 
 \item{buffer}{a vector (or dataframe) of polygons representing the buffers. tipically the result of sf::st_buffer.}
 
-\item{cx}{st_point center(s) of the buffer. Provided by \code{map2raster} if \code{PatchRelv} is used in it.}
+\item{cx}{st_point center(s) of the buffer. Provided by \code{map2raster} if used in it.}
 
 \item{zero_distance}{the distance value that will be used to calculate the Area:distance ratio when \code{cx} falls in a patch. All distances < than \code{zero_distance} will be set to this.}
 }

@@ -11,14 +11,14 @@ peri_area(poly, buffer, cx)
 
 \item{buffer}{a vector (or dataframe) of polygons representing the buffers. tipically the result of sf::st_buffer.}
 
-\item{cx}{st_point center(s) of the buffer. Provided by \code{map2raster} if \code{PatchRelv} is used in it.}
+\item{cx}{st_point center(s) of the buffer. Provided by \code{map2raster} if used in it.}
 }
 \description{
 Mean perimeter to area ratio of patches within a buffer.
 }
 \details{
 The ratio is calculated as:
-\deqn{ frac{perimeter}{Area}}
+\deqn{ \frac{Perimeter}{Area}}
 it is not scale independent, meaning that increasing the patch size while not changing the patch form will change the ratio.
 }
 \seealso{

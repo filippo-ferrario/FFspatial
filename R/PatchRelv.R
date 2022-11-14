@@ -11,7 +11,7 @@
 #' 
 #' 
 #' 
-#' @param cx  st_point center(s) of the buffer. Provided by `map2raster` if `PatchRelv` is used in it.
+#' @param cx  st_point center(s) of the buffer. Provided by `map2raster` if used in it.
 #' @param poly a collection of polygons representing the patches to be use to calculate the index
 #' @param buffer a vector (or dataframe) of polygons representing the buffers. tipically the result of sf::st_buffer.
 #' @param zero_distance the distance value that will be used to calculate the Area:distance ratio when `cx` falls in a patch. All distances < than `zero_distance` will be set to this.
