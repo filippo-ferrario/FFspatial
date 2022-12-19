@@ -15,7 +15,6 @@
 #' 
 #' 
 #' 
-#' @param cx  st_point center(s) of the buffer. Provided by `map2raster` if used in it.
 #' @param poly a collection of polygons representing the patches to be use to calculate the index
 #' @param buffer a vector (or dataframe) of polygons representing the buffers. tipically the result of sf::st_buffer.
 #' 
@@ -36,7 +35,7 @@
 #' @export 
 
 
-peri_area<-function(poly,buffer, cx){
+peri_area<-function(poly,buffer){
 
 		# compute the area of each patch
 		area<-st_area(poly)
@@ -44,6 +43,10 @@ peri_area<-function(poly,buffer, cx){
 		peri<-lwgeom::st_perimeter(poly)
 		# compute ratio and attach it to poly dataframe
 		poly$periarea<-peri/area
+		
+		# discard polygons with area = 0 (e.g., possible segmentation/digitizing issues resulting in lines or other area-less features)
+		noAreaID<-which(as.numeric(area)==0)
+		poly<-poly[-noAreaID,]
 
 
 		# intersect each buffer with polygons
@@ -68,7 +71,7 @@ peri_area<-function(poly,buffer, cx){
 
 # # # -----------
 # # # Bench
-# # # -----------
+# # -----------
 # # data in sf format
 # trssf<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
 # sbs_vect<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
@@ -77,7 +80,7 @@ peri_area<-function(poly,buffer, cx){
 # cx<-st_geometry(st_centroid(trssf[1,]))
 # new<-st_buffer(cx, dist=2)
 # bfr<-st_geometry(st_buffer(cx, dist=1))
-
+# st_crs(bfr)<-st_crs(trssf)
 # poly=rcksf
 # buffer=bfr
 
@@ -151,3 +154,25 @@ peri_area<-function(poly,buffer, cx){
 # plot(st_geometry(newOBS))
 # plot(rcksf, add=T)
 # raster::plot(test, alpha=0.5, add=T)
+
+
+
+# # infinite value for Mixed sediment trasect ph02 
+# mixsf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='mixed_sediment' & sbs_vect$transect=='ph02',], 'POLYGON')
+
+# plot(st_geometry(mixsf),  xlim=c(595382.1 ,595385.9), ylim=c(5461792,5461796 ))
+
+
+# cx<-st_point(c(595383.7, 5461794))
+# # new<-st_buffer(cx, dist=2)
+# bfr<-st_geometry(st_buffer(cx, dist=1.5))
+
+# plot(cx,pch='+', add=T)
+# plot(bfr, add=T)
+
+
+# poly=mixsf
+# buffer=bfr
+
+# peri_area(poly,buffer)
+
