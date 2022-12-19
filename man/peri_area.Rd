@@ -4,14 +4,14 @@
 \alias{peri_area}
 \title{Mean perimeter to area ratio of patches within a buffer.}
 \usage{
-peri_area(poly, buffer, cx)
+peri_area(poly, buffer, ...)
 }
 \arguments{
 \item{poly}{a collection of polygons representing the patches to be use to calculate the index}
 
 \item{buffer}{a vector (or dataframe) of polygons representing the buffers. tipically the result of sf::st_buffer.}
 
-\item{cx}{st_point center(s) of the buffer. Provided by \code{map2raster} if used in it.}
+\item{...}{unused.}
 }
 \description{
 Mean perimeter to area ratio of patches within a buffer.
@@ -20,6 +20,8 @@ Mean perimeter to area ratio of patches within a buffer.
 The ratio is calculated as:
 \deqn{ \frac{Perimeter}{Area}}
 it is not scale independent, meaning that increasing the patch size while not changing the patch form will change the ratio.
+
+The \code{...} argument allows the functioning within \link{map2raster}, but it does not supply used arguments.
 }
 \seealso{
 \link[sf:st]{sf::st_point}, \link[sf:geos_unary]{sf::st_buffer}, \link{PRindex}, \link{map2raster}
