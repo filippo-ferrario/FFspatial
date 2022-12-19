@@ -75,14 +75,14 @@ PatchRelv<-function(poly,buffer, cx, zero_distance=0.01){
 # # -----------
 # # Bench
 # # -----------
-# data in sf format
+# # data in sf format
 # trssf<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='transects')
 # sbs_vect<-sf::st_read('C:/Users/ferrariof/Documents/DFO-Godbout-2020-localSDM/GIS/godbout-fall2020.gpkg', layer='segmentation_refined')
 # rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
 
-# cx<-st_geometry(st_centroid(trssf[1,]))
-# new<-st_buffer(cx, dist=2)
-# bfr<-st_geometry(st_buffer(cx, dist=1))
+# cx<-sf::st_geometry(sf::st_centroid(trssf[1,]))
+# new<-sf::st_buffer(cx, dist=2)
+# bfr<-sf::st_geometry(sf::st_buffer(cx, dist=1))
 
 # poly=rcksf
 # buffer=bfr
