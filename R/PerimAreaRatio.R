@@ -17,12 +17,15 @@
 #' 
 #' @param poly a collection of polygons representing the patches to be use to calculate the index
 #' @param buffer a vector (or dataframe) of polygons representing the buffers. tipically the result of sf::st_buffer.
-#' 
+#' @param ... unused.
+# 
 #' @details  
 #' 
 #' The ratio is calculated as:
 #' \deqn{ \frac{Perimeter}{Area}}  
 #' it is not scale independent, meaning that increasing the patch size while not changing the patch form will change the ratio.
+#' 
+#' The `...` argument allows the functioning within [map2raster], but it does not supply used arguments.
 #' 
 #' @author Filippo Ferrario, \email{filippo.f3rrario@gmail.com} 
 #' 
@@ -35,7 +38,7 @@
 #' @export 
 
 
-peri_area<-function(poly,buffer){
+peri_area<-function(poly,buffer,...){
 
 		# compute the area of each patch
 		area<-st_area(poly)
@@ -157,22 +160,28 @@ peri_area<-function(poly,buffer){
 
 
 
-# # infinite value for Mixed sediment trasect ph02 
+# # # infinite value for Mixed sediment trasect ph02 
+# # # -----------------------------
+
 # mixsf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='mixed_sediment' & sbs_vect$transect=='ph02',], 'POLYGON')
 
-# plot(st_geometry(mixsf),  xlim=c(595382.1 ,595385.9), ylim=c(5461792,5461796 ))
+# # plot(st_geometry(mixsf),  xlim=c(595382.1 ,595385.9), ylim=c(5461792,5461796 ))
 
 
 # cx<-st_point(c(595383.7, 5461794))
-# # new<-st_buffer(cx, dist=2)
 # bfr<-st_geometry(st_buffer(cx, dist=1.5))
 
-# plot(cx,pch='+', add=T)
-# plot(bfr, add=T)
+# # plot(cx,pch='+', add=T)
+# # plot(bfr, add=T)
 
 
 # poly=mixsf
 # buffer=bfr
-
+# st_crs(buffer)<-st_crs(poly)
 # peri_area(poly,buffer)
+
+
+# new<-st_sfc(st_buffer(cx, dist=2))
+# st_crs(new)<-st_crs(poly)
+# res<-map2raster(obs_polygon=new, side.cell=0.5, radius=1, FUN=peri_area,poly=mixsf)
 
