@@ -81,12 +81,12 @@ map2raster<-function(obs_polygon, side.cell=0.1, radius=1, FUN,...) {
 # rcksf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='rock',], 'POLYGON')
 
 
-newOBS<-st_buffer(st_centroid(trssf[1,]), dist=2)
+# newOBS<-st_buffer(st_centroid(trssf[1,]), dist=2)
 
 
-# system.time(
-res<-map2raster(obs_polygon=newOBS, side.cell=0.5, radius=1, FUN=PatchRelv, zero_distance=0.5,poly=rcksf)
-# )
+# # system.time(
+# res<-map2raster(obs_polygon=newOBS, side.cell=0.5, radius=1, FUN=PatchRelv, zero_distance=0.5,poly=rcksf)
+# # )
 
 
 # system.time(
