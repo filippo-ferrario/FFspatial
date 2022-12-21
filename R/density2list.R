@@ -102,7 +102,7 @@ density2list<-function (to_density=NULL,  W_from=NULL, full_list=W_from, changeW
 						# If changeW if TRUE then change W of ppp before density because otherwise density.ppp ignore W
 						if (changeW) {Window(x[[1]])<-as.owin(Y[[1]])}
 						# res<-densityfun(X=x[[1]], W=Y[[1]],... )  #... eps, sigma, diggle, edge
-						res<-spatstat.core::density.ppp(x=x[[1]], ... )  #... eps, sigma, diggle, edge
+						res<-density.ppp(x=x[[1]], ... )  #... eps, sigma, diggle, edge
 				}
 				if  (sum(names(to_density) == K) ==0){
 					temp_ppp<-ppp(x=NULL,y=NULL,window=as.owin(Y[[1]]))
