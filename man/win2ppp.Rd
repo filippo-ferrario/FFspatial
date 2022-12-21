@@ -18,7 +18,7 @@ The function match the names of the objects in the two lists to make sure that t
 It should work either when the windows list is as long or longer than the ppp list, or vice versa.
 }
 \seealso{
-\link[spatstat.geom:solist]{spatstat.geom::solist}, \link[spatstat.geom:Window]{spatstat.geom::Window}
+\link{solist}, \link{Window}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

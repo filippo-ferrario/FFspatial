@@ -8,7 +8,7 @@
 #           and calculate the RMSE optimism at each run.
 #           Extracted info are stored in a dataframe.
 #           
-#           hackglmmPQL is set to mimic the fitting done for MIXED models by spatstat.core::mppm           
+#           hackglmmPQL is set to mimic the fitting done for MIXED models by mppm           
 #           
 #           Based on :
 #            Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M. J. C. Eijkemans, and Y. Vergouwe. 2013. Internal Validation of Risk Models in Clustered Data: A Comparison of Bootstrap Schemes. American Journal of Epidemiology 177:1209–1217.  
@@ -37,7 +37,7 @@
 #' @param dataset full dataset
 #' @param column_group character name of the dataset column with grouping.
 #' @param RAN.pred logical. Specify if using or not the random factor to obtain predictions. Defaults to FALSE. see Details and [nlme::predict.lme]
-#' @param reltol as in spatstat.core::mppm.
+#' @param reltol as in mppm.
 #' @param ... used to pass arguments to [MuMIn::r.squaredGLMM] (e.g. pj2014)
 #' 
 #' @details
@@ -46,11 +46,11 @@
 #' 
 #' Cluster Boostrap sampling is performed using [boot.sample]. 
 #' 
-#' Models are fitted using [spatstat.core::hackglmmPQL] with family set to quasipoisson(link = log) to allow using [MuMIn::r.squaredGLMM].     
+#' Models are fitted using [hackglmmPQL] with family set to quasipoisson(link = log) to allow using [MuMIn::r.squaredGLMM].     
 #' 
 #' 
 #' @seealso
-#' [boot.sample], [MuMIn::r.squaredGLMM], [spatstat.core::mppm]
+#' [boot.sample], [MuMIn::r.squaredGLMM], [mppm]
 #' 
 #' @return
 #' A dataframe where each line is a parameter of one particular model in the model set, and the averaged one (TO BE IMPLEMENTED), for each iteration
@@ -78,7 +78,7 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
   if (!is.character(column_group)) stop('column_group must be the name of the dataset column with grouping.')
   if (is.null(names(mod_fmla))) stop('mod_fmla must be a NAMED vector. see help. ')
 
-  # Function to fit models with spatstat.core::hackglmmPQL
+  # Function to fit models with hackglmmPQL
   myPQL<-function(fmla=NULL, df_to_fit=NULL)
   	{ 
       hackglmmPQL(fixed = as.formula(fmla), random =as.formula(random_fmla), 
@@ -191,5 +191,5 @@ spt_glmmPQL_bts_val<-function( mod_fmla=NULL, random_fmla=NULL, Y_col=NULL, B=20
 
 # Changes:
 # 2020-10-19 Added tryCatch in the for loop of the bootstrap to allow model fitting failures
-# 2021-12-02 replaced MASS::glmmPQL with spatstat.core::hackglmmPQL and added retol as function argument
+# 2021-12-02 replaced MASS::glmmPQL with hackglmmPQL and added retol as function argument
 # 2021-12-03 Added AIC formula

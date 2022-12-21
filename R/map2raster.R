@@ -92,4 +92,3 @@ map2raster<-function(obs_polygon, side.cell=0.1, radius=1, FUN,...) {
 # system.time(
 # mt2<-PRindex_raster(obs_polygon=newOBS, side.cell=0.5, poly=rcksf, buffer=1, zero_distance=0.01) 
 # )
-

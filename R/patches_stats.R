@@ -16,7 +16,7 @@
 #' 
 #' Number of patch within
 #' 
-#' @inheritParam PatchRelv
+#' @inheritParams PatchRelv
 #' 
 #' @details   
 #' 

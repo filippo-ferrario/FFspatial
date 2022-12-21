@@ -16,7 +16,7 @@ focal2list(
 \arguments{
 \item{to_focal}{a list of spatstat objects (e.g., owin or ppp) to which apply the focal function.}
 
-\item{W_from}{optional if to_focal is a list of ppp. A list of windows (objects of class "owin") or data acceptable to \link[spatstat.geom:as.owin]{spatstat.geom::as.owin}, where to look for the Window of observation to assign to to_focal elements.}
+\item{W_from}{optional if to_focal is a list of ppp. A list of windows (objects of class "owin") or data acceptable to \link{as.owin}, where to look for the Window of observation to assign to to_focal elements.}
 
 \item{full_list}{optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using \link{spstFocal}. To be specified if "full_list" is a subset of "W_from" to avoid superfluous calculations. If not specified but "W_from" is, then "full_list" is set to be "W_from".}
 
@@ -51,11 +51,11 @@ If some elements in "to_focal" are not contained in "full_list" (either not pres
 If "full_list" is specified, all its elements (either characters or names of a solist) must be included in "W_from" otherwise an error is thrown.
 
 \emph{\strong{ATTENTION}}
-Verify to check the value of the argument DivdideByPixelArea passed to \link[spatstat.geom:pixellate]{spatstat.geom::pixellate} via \link{spstFocal}.
+Verify to check the value of the argument DivdideByPixelArea passed to \link{pixellate} via \link{spstFocal}.
 Default is FALSE!
 }
 \seealso{
-\link{spstFocal}, \link[spatstat.geom:pixellate]{spatstat.geom::pixellate}, \link[spatstat.geom:pixellate.owin]{spatstat.geom::pixellate.owin}, \link[spatstat.geom:pixellate.ppp]{spatstat.geom::pixellate.ppp}, \link{focal}
+\link{spstFocal}, \link{pixellate}, \link{pixellate.owin}, \link{pixellate.ppp}, \link{focal}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

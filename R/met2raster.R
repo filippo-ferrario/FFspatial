@@ -7,12 +7,12 @@
 # Aim    	: 
 # ===============================================================================
 
-#' 
+#' Metric to Raster
 #' 
 #' @param obs_polygon polygon delimiting the area observed (e.g., a transect)
 #' @param ... the distance value that will be used to calculate the Area:distance ratio when `cx` falls in a patch. All distances < than `zero_distance` will be set to this.
 #' @param side.cell the size of the (squared) pixel side to be used to subdivide the observation window (i.e., the polygon defining the extent of the raster to be produced).
-#' @param make_spatstat_im logical (default=TRUE). Should the output be a [spatstat.geom::im] object for `spatstat` rather than a [raster::raster]? 
+#' @param make_spatstat_im logical (default=TRUE). Should the output be a [im] object for `spatstat` rather than a [raster::raster]? 
 #' 
 #' 
 #' @details   

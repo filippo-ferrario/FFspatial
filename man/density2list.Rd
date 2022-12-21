@@ -16,7 +16,7 @@ density2list(
 \arguments{
 \item{to_density}{a solist of ppp for which density needs to be computed}
 
-\item{W_from}{a list windows (objects of class "owin") or data acceptable to \link[spatstat.geom:as.owin]{spatstat.geom::as.owin}, where to look for the Window of observation to assign to to_density elements}
+\item{W_from}{a list windows (objects of class "owin") or data acceptable to \link{as.owin}, where to look for the Window of observation to assign to to_density elements}
 
 \item{full_list}{optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed. To be specified if "full_list" is a subset of W_from to avoid superflouos calculations.}
 
@@ -24,17 +24,17 @@ density2list(
 
 \item{addZeros}{logical. If TRUE (the default) and "W_from" is specified, the output will include elements with all pixels having value 0 when an element is in "W_from" but not in "to_density"}
 
-\item{...}{to pass extra arguments to \link[spatstat.core:density.ppp]{spatstat.core::density.ppp}}
+\item{...}{to pass extra arguments to \link{density.ppp}}
 }
 \value{
 an object of class
 }
 \description{
-This function is to be used to create a variable (usually a predictor) using \link[spatstat.core:density.ppp]{spatstat.core::density.ppp} for each replicate plot to be analyzed.
+This function is to be used to create a variable (usually a predictor) using \link{density.ppp} for each replicate plot to be analyzed.
 The intended use cases are:
 \itemize{
 \item a set of ppp is to be used as response varable
-\item for each ppp, the analyst wants to produce a variable describing a given feature using \link[spatstat.core:density.ppp]{spatstat.core::density.ppp}, in replicate plots where another set of spatial objects (e.g., owin, ppp) has been observed.
+\item for each ppp, the analyst wants to produce a variable describing a given feature using \link{density.ppp}, in replicate plots where another set of spatial objects (e.g., owin, ppp) has been observed.
 However it is possible that the predictor ppp is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available.
 In this case the function produce an image whose pixels have all 0 value
 }
@@ -52,7 +52,7 @@ If some elements in "to_density" are not contained in "full_list" (either not pr
 If "full_list" is specified, all its elements (either characters or names of a solist) must be included in "W_from" otherwise an error is thrown.
 }
 \seealso{
-\link[spatstat.core:density.ppp]{spatstat.core::density.ppp}, \link[spatstat.core:densityfun]{spatstat.core::densityfun}
+\link{density.ppp}, \link{densityfun}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

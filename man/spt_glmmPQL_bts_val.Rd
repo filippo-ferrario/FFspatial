@@ -44,7 +44,7 @@ spt_glmmPQL_bts_val(
 
 \item{RAN.pred}{logical. Specify if using or not the random factor to obtain predictions. Defaults to FALSE. see Details and \link[nlme:predict.lme]{nlme::predict.lme}}
 
-\item{reltol}{as in spatstat.core::mppm.}
+\item{reltol}{as in mppm.}
 
 \item{...}{used to pass arguments to \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM} (e.g. pj2014)}
 }
@@ -80,14 +80,14 @@ This function should be used to produce the dataframe from which calculate the a
 
 Cluster Boostrap sampling is performed using \link{boot.sample}.
 
-Models are fitted using \link[spatstat.core:spatstat.core-internal]{spatstat.core::hackglmmPQL} with family set to quasipoisson(link = log) to allow using \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}.
+Models are fitted using \link{hackglmmPQL} with family set to quasipoisson(link = log) to allow using \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}.
 
 The function fits the models in the model set \code{mod_fmla} to the origial dataframe and to each of the boostrapped samples.
 This function should be used to produce the dataframe from which calculate the average optimism and correct the model fitted on the original dataset.
 
 Cluster Boostrap sampling is performed using \link{boot.sample}.
 
-Models are fitted using \link[spatstat.core:spatstat.core-internal]{spatstat.core::hackglmmPQL} with family set to quasipoisson(link = log) to allow using \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}.
+Models are fitted using \link{hackglmmPQL} with family set to quasipoisson(link = log) to allow using \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}.
 }
 \references{
 Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M. J. C. Eijkemans, and Y. Vergouwe. 2013. Internal Validation of Risk Models in Clustered Data: A Comparison of Bootstrap Schemes. American Journal of Epidemiology 177:1209–1217.
@@ -97,9 +97,9 @@ Bouwmeester, W., K. G. M. Moons, T. H. Kappen, W. A. van Klei, J. W. R. Twisk, M
 Harrell, F. E. 2015. Regression Modeling Strategies. Springer International Publishing, Cham. (Chapter 5)
 }
 \seealso{
-\link{boot.sample}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link[spatstat.core:mppm]{spatstat.core::mppm}
+\link{boot.sample}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link{mppm}
 
-\link{boot.sample}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link[spatstat.core:mppm]{spatstat.core::mppm}
+\link{boot.sample}, \link[MuMIn:r.squaredGLMM]{MuMIn::r.squaredGLMM}, \link{mppm}
 }
 \author{
 Filippo Ferrario, \email{filippo.f3rrario@gmail.com}

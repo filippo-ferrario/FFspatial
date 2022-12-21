@@ -11,7 +11,7 @@
 #' This function to apply the raster::focal funtion to spatstat objects
 #' 
 #' @param X a ppp or a owin object
-#' @param W_from a window (object of class "owin") or data acceptable to [spatstat.geom::as.owin]. Needed to give a spatial domain if X is an owin. Optional if X is a ppp.
+#' @param W_from a window (object of class "owin") or data acceptable to [as.owin]. Needed to give a spatial domain if X is an owin. Optional if X is a ppp.
 #' @param dist the size of the side of the squared moving window used to calculate the focal statistic.
 #' @param side.cell the size of the (squared) pixel side to be used to subdivide the moving window.
 #' @param ... agruments to be passed to pixellate (except "eps";e.g., DivideByPixelArea) and [raster::focal] (in particular `fun`, `na.rm`, `pad` and `padValue`).
@@ -64,8 +64,8 @@ spstFocal<-function(X, W_from=NULL, dist=NULL, side.cell=NULL, ...){
 			# require(raster)
 			if(is.null(dist)) stop('specify dist')
 			if(is.null(side.cell)) stop('specify side.cell')
-			if(spatstat.geom::is.owin(X) & is.null(W_from)) stop('"W_from" must be specified when X is an owin') 	
-            if (!is.null(W_from)) {WW<- spatstat.geom::as.owin(W_from)} else {WW<-W_from}
+			if(is.owin(X) & is.null(W_from)) stop('"W_from" must be specified when X is an owin') 	
+            if (!is.null(W_from)) {WW<- as.owin(W_from)} else {WW<-W_from}
 			# chech moving window dimension
 			ncell<- as.integer(as.character(dist/side.cell)) # as.integer(as.character()) is needed to avoid floating point error when dist < 1
 			rad<-  (ncell-1) %% 2 
@@ -75,19 +75,19 @@ spstFocal<-function(X, W_from=NULL, dist=NULL, side.cell=NULL, ...){
 				# ncell<- ncell+1
 				}
 			# prepare raster for OWIN objects	
-        	if (spatstat.geom::is.owin(X)){
+        	if (is.owin(X)){
         				# 1) pixellate the owin object with the Transect window.
-        				p2<-spatstat.geom::pixellate.owin(X, W=WW, ..., eps=c(side.cell,side.cell))
+        				p2<-pixellate.owin(X, W=WW, ..., eps=c(side.cell,side.cell))
         				# 2) assign the spatial domain of the transect
-        				int<-spatstat.geom::as.im(p2,W=WW)
+        				int<-as.im(p2,W=WW)
         				# 3) convert image to a rasterLayer
         				ras<-raster::raster(int)
         		}
         	# prepare raster for PPP objects
-        	if (spatstat.geom::is.ppp(X))	{
+        	if (is.ppp(X))	{
         		# check existence of W_from and, if found, assign it as Window to X otherwise set WW as the Window of X
-        		if (!is.null(WW)) {spatstat.geom::Window(X)<-WW} else {WW<-spatstat.geom::Window(X)}
-        		int<-spatstat.geom::pixellate.ppp(X,eps=c(side.cell,side.cell),...) 
+        		if (!is.null(WW)) {Window(X)<-WW} else {WW<-Window(X)}
+        		int<-pixellate.ppp(X,eps=c(side.cell,side.cell),...) 
         		# 3) convert image to a rasterLayer
 				ras<-raster::raster(int)
         		}	
@@ -96,10 +96,10 @@ spstFocal<-function(X, W_from=NULL, dist=NULL, side.cell=NULL, ...){
 			# extract the data matrix 
 			m<- raster::as.matrix(mean_ras)
 			# fix spatial indexing
-			m<- spatstat.geom::transmat(m, from='European', to ='spatstat')
+			m<- transmat(m, from='European', to ='spatstat')
 			# convert back to image object
-			mean_im<-spatstat.geom::as.im(m, WW)
-			im2<-spatstat.geom::as.im(mean_im,WW)
+			mean_im<-as.im(m, WW)
+			im2<-as.im(mean_im,WW)
 			im2
 }
 

@@ -6,6 +6,13 @@
 \usage{
 PatchNum(poly, buffer, cx)
 }
+\arguments{
+\item{poly}{a collection of polygons representing the patches to be use to calculate the index}
+
+\item{buffer}{a vector (or dataframe) of polygons representing the buffers. tipically the result of sf::st_buffer.}
+
+\item{cx}{st_point center(s) of the buffer. Provided by \code{map2raster} if used in it.}
+}
 \description{
 Number of patch in buffer
 }

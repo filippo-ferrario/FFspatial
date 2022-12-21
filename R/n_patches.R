@@ -12,7 +12,7 @@
 #' 
 #' 
 #' 
-#' @inheritParam PatchRelv
+#' @inheritParams PatchRelv
 #' 
 #' @details   
 #' 

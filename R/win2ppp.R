@@ -23,7 +23,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' [spatstat.geom::solist], [spatstat.geom::Window]
+#' [solist], [Window]
 #' 
 #' 
 #' @export 
@@ -43,6 +43,6 @@ win2ppp<-function(X,W){
 	if  (chk!= length(X)) stop ('The lists do not follow the same order rule') 
 	if  (chk== length(X)) print('The two lists follow the same order: matching windows to ppp will be correct!') 
 # assign the correct window to each urchin point pattern
-	for (i in 1:length(X)) spatstat.geom::Window(X[[i]])<-W[[i]] 
+	for (i in 1:length(X)) Window(X[[i]])<-W[[i]] 
 	X
 }

@@ -20,7 +20,7 @@
 #' 
 #' 
 #' @param to_focal a list of spatstat objects (e.g., owin or ppp) to which apply the focal function. 
-#' @param W_from  optional if to_focal is a list of ppp. A list of windows (objects of class "owin") or data acceptable to [spatstat.geom::as.owin], where to look for the Window of observation to assign to to_focal elements.
+#' @param W_from  optional if to_focal is a list of ppp. A list of windows (objects of class "owin") or data acceptable to [as.owin], where to look for the Window of observation to assign to to_focal elements.
 #' @param full_list optional. A character vector or a list of spatstat objects (e.g., owin or ppp) defining the complete set of replicates for which a variable need to be computed using [spstFocal]. To be specified if "full_list" is a subset of "W_from" to avoid superfluous calculations. If not specified but "W_from" is, then "full_list" is set to be "W_from".
 #' @param changeW logical. If TRUE (the default) and "W_from" is specified, the Window of the elements from "W_from" is used and will replace that of elements in "to_focal" (this in case X is a ppp). If FALSE the window of "to_focal" elements is kept.
 #' @param addZeros logical. If TRUE (the default) and "W_from" is specified, the output will include elements with all pixels having value 0 when an element is in "W_from" but not in "to_focal"
@@ -39,7 +39,7 @@
 #' If "full_list" is specified, all its elements (either characters or names of a solist) must be included in "W_from" otherwise an error is thrown. 
 #' 
 #' ***ATTENTION***
-#' Verify to check the value of the argument DivdideByPixelArea passed to [spatstat.geom::pixellate] via [spstFocal].
+#' Verify to check the value of the argument DivdideByPixelArea passed to [pixellate] via [spstFocal].
 #' Default is FALSE!
 #' 
 #' @author Filippo Ferrario, \email{filippo.f3rrario@gmail.com} 
@@ -47,7 +47,7 @@
 #' @examples 
 #' 
 #' @seealso
-#' [spstFocal], [spatstat.geom::pixellate], [spatstat.geom::pixellate.owin], [spatstat.geom::pixellate.ppp], [focal]
+#' [spstFocal], [pixellate], [pixellate.owin], [pixellate.ppp], [focal]
 #' 
 #' @return
 #' an object of class "imlist"  "solist"  "anylist" "listof"  "list" 
@@ -109,14 +109,14 @@ focal2list<-function (to_focal=NULL, W_from=NULL, full_list=W_from, changeW=TRUE
 				}
 				if  (sum(names(to_focal) == K) ==0){
 					if('side.cell' %in% names(extras)) eps<-rep(extras$side.cell,2) else eps<-NULL
-					res<-spatstat.geom::as.im(spatstat.geom::Window(Y[[1]]), value=0,eps=eps)		
+					res<-as.im(Window(Y[[1]]), value=0,eps=eps)		
 				}
 				res		
 
 			})
 
 		names(qq)<-full_list
-		qq<-spatstat.geom::as.solist(qq)
+		qq<-as.solist(qq)
 		qq
 }
 

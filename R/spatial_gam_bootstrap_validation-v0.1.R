@@ -9,7 +9,7 @@
 #           Extracted info are stored in a dataframe.
 #           BOOTSTRAP: normal boostrap
 #
-#           GAM is set to mimic the fitting done for Fixed models by spatstat.core::mppm  (i.e., [mgcv::gam])          
+#           GAM is set to mimic the fitting done for Fixed models by mppm  (i.e., [mgcv::gam])          
 #           
 #           Based on :
 #            Harrell, F. E. 2015. Regression Modeling Strategies. Springer International Publishing, Cham. (Chapter 5)     
