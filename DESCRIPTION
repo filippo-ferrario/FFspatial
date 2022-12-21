@@ -5,6 +5,6 @@ Title: Filippo Ferrario Miscellaneous functions for spatial analysis
 Description: Miscellaneous functions code through time to perform different task mainly in spatial data analysis.
 Author: Filippo Ferrario <filippo.f3rrario@gmail.com>
 Maintainer: Filippo Ferrario <filippo.f3rrario@gmail.com>
-Depends: MuMIn (>= 1.43.17), raster, spatstat(>= spatstat_3.0-2), lwgeom, sf
+Depends: MuMIn (>= 1.43.17), raster, spatstat(>= 3.0-2), lwgeom, sf
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
