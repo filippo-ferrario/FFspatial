@@ -12,7 +12,7 @@
 #' 
 #' This function is to be used to create a variable (usually a predictor) using [density.ppp] for each replicate plot to be analyzed.
 #' The intended use cases are:
-#' - a set of ppp is to be used as response varable
+#' - a set of ppp is to be used as response variable
 #' - for each ppp, the analyst wants to produce a variable describing a given feature using [density.ppp], in replicate plots where another set of spatial objects (e.g., owin, ppp) has been observed. 
 #' 	 However it is possible that the predictor ppp is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available. 
 #' 	 In this case the function produce an image whose pixels have all 0 value
@@ -25,8 +25,10 @@
 #' @param ... to pass extra arguments to [density.ppp]
 #' 
 #' @details
-#' List "to_density" may be a subset of or longer list than "full_list" or "W_from". 
-#' Only element from "to_density" also present in either "W_from" or "full_list" will be considered.
+#' List "to_density" may be a subset of or longer list than "full_list" or "W_from".  
+#' Only element from "to_density" also present in either "W_from" or "full_list" will be considered.  
+#' 
+#' __If addZeros=TRUE__
 #' For those element of "full_list" not in "to_density", the function creates "0": the absence elements of list "full_list" from the "to_density" list is not to be considered as missing values but rather as 0.
 #' For those element the function can create an im object in which the pixels value is set to zero.
 #' 
@@ -52,6 +54,7 @@
 density2list<-function (to_density=NULL,  W_from=NULL, full_list=W_from, changeW=FALSE, addZeros=TRUE, ...){
  		# check arguments
 		if (is.null(to_density) | !'solist' %in% class(to_density)) stop('"to_density" must be a solist')
+		if (is.null(names(to_density))) stop('elements in "to_density" must be named!')
 		if (!is.null(W_from) & !'solist' %in% class(W_from)) stop('"W_from" must be a solist or NULL')
 		if (!is.null(full_list) & !'solist' %in% class(full_list) & ! is.character(full_list)) stop('full_list must be either a solist or a characher vector OR NULL')
 		if (!is.logical(changeW)) stop('"changeW" must be logical')
@@ -95,7 +98,7 @@ density2list<-function (to_density=NULL,  W_from=NULL, full_list=W_from, changeW
 
 
 		qq<-lapply(full_list , FUN=function(K) { 
-				# browser()S
+				# browser()
 			    Y<-W_from[names(W_from) %in% K]
 				if (sum(names(to_density) == K) ==1){
 						x<-to_density[K]

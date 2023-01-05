@@ -33,7 +33,7 @@ an object of class
 This function is to be used to create a variable (usually a predictor) using \link{density.ppp} for each replicate plot to be analyzed.
 The intended use cases are:
 \itemize{
-\item a set of ppp is to be used as response varable
+\item a set of ppp is to be used as response variable
 \item for each ppp, the analyst wants to produce a variable describing a given feature using \link{density.ppp}, in replicate plots where another set of spatial objects (e.g., owin, ppp) has been observed.
 However it is possible that the predictor ppp is not observed (i.e., a real zero and not to be considered missing data) in all the plots where the response ppp is available.
 In this case the function produce an image whose pixels have all 0 value
@@ -42,6 +42,8 @@ In this case the function produce an image whose pixels have all 0 value
 \details{
 List "to_density" may be a subset of or longer list than "full_list" or "W_from".
 Only element from "to_density" also present in either "W_from" or "full_list" will be considered.
+
+\strong{If addZeros=TRUE}
 For those element of "full_list" not in "to_density", the function creates "0": the absence elements of list "full_list" from the "to_density" list is not to be considered as missing values but rather as 0.
 For those element the function can create an im object in which the pixels value is set to zero.
 
