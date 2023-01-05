@@ -49,8 +49,7 @@ peri_area<-function(poly,buffer,...){
 		
 		# discard polygons with area = 0 (e.g., possible segmentation/digitizing issues resulting in lines or other area-less features)
 		noAreaID<-which(as.numeric(area)==0)
-		poly<-poly[-noAreaID,]
-
+		if (length(noAreaID)>0) poly<-poly[-noAreaID,]
 
 		# intersect each buffer with polygons
 		int_list<-lapply(buffer, function(bf) { 
