@@ -75,22 +75,22 @@ MoWin<-function(dist = NULL, side.cell = NULL, type=c('square','circle')){
 
 # # bench
 # # =======
-MoWin(3,0.5, type='square')
-7*0.5
-MoWin(3,1)
+# MoWin(3,0.5, type='square')
+# 7*0.5
+# MoWin(3,1)
 
-MoWin(1,0.1)
-MoWin(4,0.2)
-0.2*9
+# MoWin(1,0.1)
+# MoWin(4,0.2)
+# 0.2*9
 
-MoWin(dist=2,side.cell=1, type='square')
+# MoWin(dist=2,side.cell=1, type='square')
 
-dist=1
-side.cell=0.5
-type='circle'
-MoWin(dist=3,side.cell=0.5, type='circle')
+# dist=1
+# side.cell=0.5
+# type='circle'
+# MoWin(dist=3,side.cell=0.5, type='circle')
 
-MoWin(dist=1,side.cell=1, type='circle')
+# MoWin(dist=1,side.cell=1, type='circle')
 
 
-MoWin(dist=2,side.cell=0.1, type='circle')
+# MoWin(dist=2,side.cell=0.1, type='circle')
