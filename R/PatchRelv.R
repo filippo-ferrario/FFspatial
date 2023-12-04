@@ -50,7 +50,7 @@ PatchRelv<-function(poly,buffer, cx, zero_distance=0.01){
 								st_area(x)
 							}
 						)
-		# calculate distanse to each intersected polygon in each buffer
+		# calculate distance to each intersected polygon in each buffer
 		dist_list<-mapply(function(poly, cx) {
 								# browser()
 							cx<-st_sfc(cx)

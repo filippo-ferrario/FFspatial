@@ -164,14 +164,14 @@ peri_area<-function(poly,buffer,...){
 
 # mixsf<-sf::st_cast(sbs_vect[sbs_vect$class_corrected=='mixed_sediment' & sbs_vect$transect=='ph02',], 'POLYGON')
 
-# # plot(st_geometry(mixsf),  xlim=c(595382.1 ,595385.9), ylim=c(5461792,5461796 ))
+# plot(st_geometry(mixsf),  xlim=c(595382.1 ,595385.9), ylim=c(5461792,5461796 ))
 
 
 # cx<-st_point(c(595383.7, 5461794))
-# bfr<-st_geometry(st_buffer(cx, dist=1.5))
+# bfr<-st_geometry(st_buffer(cx, dist=0.15))
 
-# # plot(cx,pch='+', add=T)
-# # plot(bfr, add=T)
+# plot(cx,pch='+', add=T)
+# plot(bfr, add=T)
 
 
 # poly=mixsf
@@ -182,5 +182,8 @@ peri_area<-function(poly,buffer,...){
 
 # new<-st_sfc(st_buffer(cx, dist=2))
 # st_crs(new)<-st_crs(poly)
-# res<-map2raster(obs_polygon=new, side.cell=0.5, radius=1, FUN=peri_area,poly=mixsf)
+# plot(new)
+# plot(st_make_grid(new),cellsize=0.5, add=T )
 
+# res<-map2raster(obs_polygon=new, side.cell=0.5, radius=0.15, FUN=peri_area,poly=mixsf)
+# raster::plot(res,add=T, useRaster=F)
