@@ -1,6 +1,6 @@
 Package: FFspatial
-Version: 0.5
-Date: 2022-12-21
+Version: 0.6
+Date: 2023-12-4
 Title: Filippo Ferrario Miscellaneous functions for spatial analysis 
 Description: Miscellaneous functions code through time to perform different task mainly in spatial data analysis.
 Author: Filippo Ferrario <filippo.f3rrario@gmail.com>
