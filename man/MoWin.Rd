@@ -4,13 +4,19 @@
 \alias{MoWin}
 \title{Variable squared moving window}
 \usage{
-MoWin(dist = NULL, side.cell = NULL)
+MoWin(dist = NULL, side.cell = NULL, type = c("square", "circle"))
 }
 \arguments{
-\item{dist}{width of the square}
+\item{dist}{width of the square or radius of the circle}
 
 \item{side.cell}{width of the cell/pixel of the moving window}
+
+\item{type}{type of moving windows. At the moment just 'square' or 'circle'.}
 }
 \description{
-Prepare a squared moving window matrix of variable size to be used in other functions (e.g., raster::focal, landscapemetrics::window_lsm)
+Prepare a squared or circular moving window matrix of variable size to be used in other functions (e.g., raster::focal, landscapemetrics::window_lsm)
+}
+\details{
+The size of the matrix is always squared for both types. For the circular one, the cells outside the circle are Filled with NA, while in the squared window cells have just values of 1.
+The number of columns and rows is alway odd to allow having a focal cell. Thus both the side and the raidus of the windows are adjusted (in excess) if needed.
 }
